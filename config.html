@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mix-CRM - Configurações e Administração do Sistema</title>
+<!-- Font Awesome CDN -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857'
+            },
+            darkBg: '#090e17',
+            darkSurface: '#0f172a',
+            darkCard: '#131d2e',
+            darkCardHover: '#182438',
+            darkBorder: 'rgba(255, 255, 255, 0.08)'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scrollbars">
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090e17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+<style data-purpose="toggle-switch">
+    .switch input:checked + .slider {
+      background-color: #10b981;
+    }
+    .switch input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    .slider {
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      background-color: #334155;
+      border-radius: 9999px;
+      transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="bg-[#090e17] text-slate-200 font-sans antialiased min-h-screen flex selection:bg-emerald-500/30 selection:text-emerald-300">
+<!-- BEGIN: Sidebar Navigation -->
+<aside class="w-64 bg-[#0d1424] flex-shrink-0 text-slate-300 min-h-screen flex flex-col justify-between select-none z-20 border-r border-slate-800/80" data-purpose="sidebar">
+<div>
+<!-- Brand Logo / Header -->
+<div class="h-16 flex items-center justify-between px-5 border-b border-slate-800/80">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-emerald-500/25 font-extrabold text-lg">
+          M
+        </div>
+<div>
+<span class="text-white font-extrabold tracking-tight text-lg leading-tight block">Mix-CRM</span>
+<span class="text-[10px] text-emerald-400 font-semibold tracking-wider uppercase block">Enterprise Hub</span>
+</div>
+</div>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">v2.4</span>
+</div>
+<!-- Navigation Links -->
+
+<nav class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+<!-- Grupo 1: Módulo de Operações -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo de Operações</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-500/15 text-brand-400 font-semibold border border-brand-500/20 shadow-sm transition-all group" href="index.html">
+<svg class="w-4 h-4 text-brand-400 transition group-hover:scale-110" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Início</span>
+<span class="ml-auto w-1.5 h-1.5 rounded-full bg-brand-400 shadow-glow-emerald"></span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="organization.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Organizações</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="products.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Produtos</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-mono">8</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="business.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Negócios</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Fornecedores</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="cash.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Caixa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="customers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24"></svg>
+<span class="text-sm">Clientes</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-mono">10</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="activity.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Atividades</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 2: Módulo Financeiro -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo Financeiro</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="invoice.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Emitir Fatura</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="finances.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Finanças</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="salary.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Folha de Salário</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Pedidos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="goals.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="4" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="1" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Metas</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 3: Definições -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Definições</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="config.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<circle cx="12" cy="12" r="3" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Configurações</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+
+</div>
+<!-- Sair / Logout -->
+<div class="p-4 border-t border-slate-800/80 bg-[#0a101d]">
+<div class="flex items-center justify-between text-xs text-slate-400">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-[11px] font-mono">Servidor: Online</span>
+</div>
+<a class="flex items-center gap-1.5 text-slate-400 hover:text-rose-400 transition" href="#" title="Terminar Sessão">
+<i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+<span>Sair</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar Navigation -->
+<!-- BEGIN: Main Workspace -->
+<div class="flex-1 flex flex-col min-w-0 bg-[#090e17]">
+<!-- Topbar Header -->
+<header class="h-16 bg-[#0d1424]/90 backdrop-blur-md border-b border-slate-800/80 px-8 flex items-center justify-between sticky top-0 z-30" data-purpose="topbar">
+<!-- Left: Dropdown & Search -->
+<div class="flex items-center gap-4 flex-1 max-w-2xl">
+<!-- Organization Picker -->
+<div class="relative flex items-center">
+<div class="flex items-center gap-2 bg-[#131d2e] border border-slate-700/60 rounded-xl px-3 py-1.5 text-xs text-slate-200 hover:border-slate-600 transition cursor-pointer">
+<i class="fa-solid fa-building text-emerald-400 text-xs"></i>
+<span class="font-semibold">Organização Principal</span>
+<i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+</div>
+</div>
+<!-- Global Search -->
+<div class="relative flex-1 flex items-center bg-[#131d2e] border border-slate-800 rounded-xl overflow-hidden shadow-inner focus-within:border-emerald-500/60 transition">
+<i class="fa-solid fa-magnifying-glass text-xs text-slate-400 pl-3.5"></i>
+<input class="bg-transparent text-xs text-slate-100 placeholder-slate-400 px-3 py-2 w-full focus:outline-none border-none ring-0 focus:ring-0" placeholder="Pesquisar configurações, utilizadores, acessos... (Ctrl + K)" type="text"/>
+<span class="hidden sm:inline-block mr-2 px-1.5 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-400 border border-slate-700">⌘K</span>
+</div>
+</div>
+<!-- Right: Actions & User Info -->
+<div class="flex items-center gap-3">
+<!-- Quick Action: Novo Utilizador -->
+<button class="inline-flex items-center gap-2 px-3.5 py-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white text-xs font-semibold rounded-xl shadow-lg shadow-emerald-600/20 transition transform active:scale-95">
+<i class="fa-solid fa-plus text-xs"></i>
+<span class="hidden md:inline">Novo Utilizador</span>
+</button>
+<!-- Theme Switcher / Dark Indicator -->
+<button class="w-8 h-8 rounded-xl bg-[#131d2e] hover:bg-[#1a263c] border border-slate-800 text-emerald-400 flex items-center justify-center transition" title="Modo Escuro Ativo">
+<i class="fa-solid fa-moon text-xs"></i>
+</button>
+<!-- Notifications -->
+<button class="w-8 h-8 rounded-xl bg-[#131d2e] hover:bg-[#1a263c] border border-slate-800 text-slate-300 flex items-center justify-center relative transition" title="Notificações do Sistema">
+<i class="fa-regular fa-bell text-xs"></i>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-emerald-500 rounded-full ring-2 ring-[#0d1424]"></span>
+</button>
+<!-- User Profile -->
+<div class="flex items-center gap-2 pl-3 border-l border-slate-800">
+<div class="text-right hidden lg:block">
+<div class="text-xs font-bold text-slate-100">Mauro Silva</div>
+<div class="text-[10px] text-emerald-400 font-medium">Administrador</div>
+</div>
+<div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center font-bold text-xs shadow-md shadow-emerald-500/20 ring-1 ring-white/10">
+          MS
+        </div>
+</div>
+</div>
+</header>
+<!-- Page Main Workspace -->
+<main class="flex-1 p-6 md:p-8 space-y-6 max-w-[1600px] w-full mx-auto" data-purpose="main-workspace">
+<!-- Header Area & Breadcrumb -->
+<section class="space-y-4" data-purpose="page-header">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<div>
+<div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold tracking-wider uppercase mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            Administração do Sistema
+          </div>
+<h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Configurações Gerais</h1>
+<p class="text-slate-400 text-xs md:text-sm mt-0.5">Controle os utilizadores, os níveis de acesso e o comportamento operacional do seu CRM corporativo.</p>
+</div>
+<div class="flex items-center gap-2.5">
+<button class="inline-flex items-center gap-2 px-3 py-2 bg-[#131d2e] hover:bg-[#1a263c] border border-slate-800 text-slate-300 text-xs font-medium rounded-xl transition">
+<i class="fa-solid fa-arrow-rotate-right text-[11px] text-slate-400"></i>
+<span>Sincronizar</span>
+</button>
+<button class="inline-flex items-center gap-2 px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl shadow-lg shadow-emerald-600/20 transition">
+<i class="fa-solid fa-floppy-disk text-xs"></i>
+<span>Guardar Tudo</span>
+</button>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="border-b border-slate-800/90 flex gap-2 md:gap-6 text-xs md:text-sm font-semibold pt-1 overflow-x-auto">
+<a class="pb-3 text-emerald-400 border-b-2 border-emerald-400 flex items-center gap-2 whitespace-nowrap" href="#">
+<i class="fa-solid fa-users text-xs"></i>
+<span>Utilizadores</span>
+<span class="px-1.5 py-0.5 text-[10px] rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">3</span>
+</a>
+<a class="pb-3 text-slate-400 hover:text-slate-200 transition flex items-center gap-2 whitespace-nowrap" href="#">
+<i class="fa-solid fa-shield-halved text-xs"></i>
+<span>Permissões</span>
+</a>
+<a class="pb-3 text-slate-400 hover:text-slate-200 transition flex items-center gap-2 whitespace-nowrap" href="#">
+<i class="fa-solid fa-sliders text-xs"></i>
+<span>Preferências gerais</span>
+</a>
+<a class="pb-3 text-slate-400 hover:text-slate-200 transition flex items-center gap-2 whitespace-nowrap" href="#">
+<i class="fa-solid fa-lock text-xs"></i>
+<span>Segurança &amp; Auditoria</span>
+</a>
+<a class="pb-3 text-slate-400 hover:text-slate-200 transition flex items-center gap-2 whitespace-nowrap" href="#">
+<i class="fa-solid fa-plug-circle-bolt text-xs"></i>
+<span>Integrações &amp; API</span>
+<span class="px-1.5 py-0.2 rounded text-[9px] bg-slate-800 text-slate-400 font-mono">REST</span>
+</a>
+</div>
+</section>
+<!-- Top Metric / Summary KPI Cards -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-purpose="summary-kpis">
+<!-- Metric 1 -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 p-4 relative overflow-hidden group hover:border-slate-700 transition">
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-400 font-medium">Total de Utilizadores</span>
+<span class="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-users"></i>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="text-2xl font-extrabold text-white">3</span>
+<span class="text-xs text-emerald-400 font-semibold flex items-center gap-1">
+<i class="fa-solid fa-circle-check text-[10px]"></i> 2 Ativos
+          </span>
+<span class="text-xs text-slate-400 font-medium">• 1 Inativo</span>
+</div>
+<div class="w-full bg-slate-800/70 h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-blue-500 h-full rounded-full" style="width: 66.6%;"></div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 p-4 relative overflow-hidden group hover:border-slate-700 transition">
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-400 font-medium">Perfis Definidos</span>
+<span class="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-id-badge"></i>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="text-2xl font-extrabold text-white">3</span>
+<span class="text-xs text-slate-300 font-medium">Admin, Gestor, Colab.</span>
+</div>
+<div class="w-full bg-slate-800/70 h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-purple-500 h-full rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 p-4 relative overflow-hidden group hover:border-slate-700 transition">
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-400 font-medium">Sessões Ativas</span>
+<span class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-satellite-dish"></i>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="text-2xl font-extrabold text-emerald-400">4</span>
+<span class="text-xs text-slate-400">Último login há 12m</span>
+</div>
+<div class="w-full bg-slate-800/70 h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-emerald-500 h-full rounded-full" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 p-4 relative overflow-hidden group hover:border-slate-700 transition">
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-400 font-medium">Segurança &amp; 2FA</span>
+<span class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-shield-check"></i>
+</span>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="text-2xl font-extrabold text-white">100%</span>
+<span class="text-xs text-emerald-400 font-semibold flex items-center gap-1">
+<i class="fa-solid fa-lock text-[10px]"></i> 2FA Ativo
+          </span>
+</div>
+<div class="w-full bg-slate-800/70 h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full" style="width: 100%;"></div>
+</div>
+</div>
+</section>
+<!-- Main Layout Grid: Left Content (2 Cols) + Right Summary Column (1 Col) -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 items-start">
+<!-- Left 2-Columns Block -->
+<div class="xl:col-span-2 space-y-6">
+<!-- CARD 1: Utilizadores da Empresa -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 shadow-xl overflow-hidden" data-purpose="users-management-card">
+<div class="p-5 md:p-6 border-b border-slate-800/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-base font-bold text-white">Utilizadores da empresa</h2>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700">3 Registados</span>
+</div>
+<p class="text-xs text-slate-400 mt-1">Adicione colaboradores, defina níveis de permissão e monitorize o estado das contas.</p>
+</div>
+<button class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl transition shadow-lg shadow-emerald-600/20 active:scale-95">
+<i class="fa-solid fa-user-plus text-xs"></i>
+<span>Novo utilizador</span>
+</button>
+</div>
+<!-- Table of Users -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs text-slate-300">
+<thead class="bg-[#0f172a] uppercase text-[10px] text-slate-400 font-semibold tracking-wider border-b border-slate-800">
+<tr>
+<th class="py-3.5 px-6" scope="col">Utilizador</th>
+<th class="py-3.5 px-6" scope="col">Perfil</th>
+<th class="py-3.5 px-6" scope="col">Estado</th>
+<th class="py-3.5 px-6 text-right" scope="col">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-800/60 font-normal">
+<!-- User 1: Mauro Silva / Admin -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-rose-400 text-white flex items-center justify-center font-bold text-xs shadow-md shadow-rose-600/20">
+                        MS
+                      </div>
+<div>
+<div class="font-bold text-white text-sm flex items-center gap-2">
+<span>Mauro Silva</span>
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 font-mono border border-rose-500/30">Super Admin</span>
+</div>
+<div class="text-slate-400 text-xs font-mono">admin@empresa.pt</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+<i class="fa-solid fa-crown text-[10px]"></i>
+                      Administrador
+                    </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      Ativo
+                    </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="inline-flex items-center gap-2">
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-emerald-400 flex items-center justify-center transition" title="Editar Utilizador">
+<i class="fa-regular fa-pen-to-square text-xs"></i>
+</button>
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-amber-400 flex items-center justify-center transition" title="Repor Palavra-passe">
+<i class="fa-solid fa-key text-xs"></i>
+</button>
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition" title="Remover Utilizador">
+<i class="fa-regular fa-trash-can text-xs"></i>
+</button>
+</div>
+</td>
+</tr>
+<!-- User 2: Maria Santos -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 text-white flex items-center justify-center font-bold text-xs shadow-md shadow-amber-600/20">
+                        MS
+                      </div>
+<div>
+<div class="font-bold text-white text-sm">Maria Santos</div>
+<div class="text-slate-400 text-xs font-mono">maria@empresa.pt</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+<i class="fa-solid fa-briefcase text-[10px]"></i>
+                      Gestor
+                    </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      Ativo
+                    </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="inline-flex items-center gap-2">
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-emerald-400 flex items-center justify-center transition" title="Editar Utilizador">
+<i class="fa-regular fa-pen-to-square text-xs"></i>
+</button>
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-amber-400 flex items-center justify-center transition" title="Repor Palavra-passe">
+<i class="fa-solid fa-key text-xs"></i>
+</button>
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition" title="Remover Utilizador">
+<i class="fa-regular fa-trash-can text-xs"></i>
+</button>
+</div>
+</td>
+</tr>
+<!-- User 3: João Costa -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-blue-500 text-white flex items-center justify-center font-bold text-xs shadow-md shadow-cyan-600/20">
+                        JC
+                      </div>
+<div>
+<div class="font-bold text-white text-sm">João Costa</div>
+<div class="text-slate-400 text-xs font-mono">joao@empresa.pt</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+<i class="fa-solid fa-user-tag text-[10px]"></i>
+                      Colaborador
+                    </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-400 border border-slate-700">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                      Inativo
+                    </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="inline-flex items-center gap-2">
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-emerald-400 flex items-center justify-center transition" title="Editar Utilizador">
+<i class="fa-regular fa-pen-to-square text-xs"></i>
+</button>
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-amber-400 flex items-center justify-center transition" title="Repor Palavra-passe">
+<i class="fa-solid fa-key text-xs"></i>
+</button>
+<button class="w-8 h-8 rounded-lg bg-slate-800/80 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition" title="Remover Utilizador">
+<i class="fa-regular fa-trash-can text-xs"></i>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- CARD 2: Matriz de Permissões -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 shadow-xl p-5 md:p-6" data-purpose="permissions-matrix-card">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-5 border-b border-slate-800/80 gap-4">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-base font-bold text-white">Matriz de permissões</h2>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Perfil: Gestor</span>
+</div>
+<p class="text-xs text-slate-400 mt-1">Configure minuciosamente o que cada perfil pode consultar, criar, editar ou eliminar.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 bg-[#0f172a] hover:bg-slate-800 text-slate-300 border border-slate-700/80 text-xs font-semibold rounded-xl transition">
+                Restaurar Padrão
+              </button>
+<button class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl shadow-md shadow-emerald-600/20 transition flex items-center gap-1.5">
+<i class="fa-solid fa-check text-[11px]"></i>
+<span>Guardar alterações</span>
+</button>
+</div>
+</div>
+<!-- Permission Table -->
+<div class="overflow-x-auto mt-4">
+<table class="w-full text-left text-xs">
+<thead>
+<tr class="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800/90 bg-[#0f172a]/60">
+<th class="py-3 px-4 rounded-l-lg">Módulo</th>
+<th class="py-3 px-4 text-center">Ver</th>
+<th class="py-3 px-4 text-center">Criar</th>
+<th class="py-3 px-4 text-center">Editar</th>
+<th class="py-3 px-4 text-center rounded-r-lg">Eliminar</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-800/60 font-medium text-slate-300">
+<!-- Dashboard -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-3.5 px-4 font-semibold text-white flex items-center gap-2.5">
+<i class="fa-solid fa-chart-pie text-slate-400 w-4"></i>
+<span>Dashboard Executivo</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+</tr>
+<!-- Clientes -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-3.5 px-4 font-semibold text-white flex items-center gap-2.5">
+<i class="fa-solid fa-user-group text-slate-400 w-4"></i>
+<span>Clientes e Contactos</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+</tr>
+<!-- Produtos -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-3.5 px-4 font-semibold text-white flex items-center gap-2.5">
+<i class="fa-solid fa-boxes-stacked text-slate-400 w-4"></i>
+<span>Catálogo &amp; Produtos</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+</tr>
+<!-- Negócios -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-3.5 px-4 font-semibold text-white flex items-center gap-2.5">
+<i class="fa-solid fa-briefcase text-slate-400 w-4"></i>
+<span>Pipeline de Negócios</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+</tr>
+<!-- Metas -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-3.5 px-4 font-semibold text-white flex items-center gap-2.5">
+<i class="fa-solid fa-bullseye text-slate-400 w-4"></i>
+<span>Metas da Equipa</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+</tr>
+<!-- Relatórios -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-3.5 px-4 font-semibold text-white flex items-center gap-2.5">
+<i class="fa-solid fa-file-invoice text-slate-400 w-4"></i>
+<span>Relatórios &amp; Auditoria</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+</tr>
+<!-- Configurações do Sistema -->
+<tr class="hover:bg-slate-800/30 transition">
+<td class="py-3.5 px-4 font-semibold text-white flex items-center gap-2.5">
+<i class="fa-solid fa-gear text-slate-400 w-4"></i>
+<span>Configurações Globais</span>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input checked="" class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-4 text-center">
+<input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/40 cursor-pointer" type="checkbox"/>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- CARD 3: Preferências Gerais (Toggles) -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 shadow-xl p-5 md:p-6" data-purpose="preferences-card">
+<div class="flex items-center justify-between pb-4 border-b border-slate-800/80">
+<div>
+<h2 class="text-base font-bold text-white">Preferências gerais de funcionamento</h2>
+<p class="text-xs text-slate-400 mt-0.5">Personalize automações, notificações e diretrizes do sistema no dia-a-dia.</p>
+</div>
+<span class="w-8 h-8 rounded-xl bg-slate-800 text-emerald-400 flex items-center justify-center text-xs">
+<i class="fa-solid fa-sliders"></i>
+</span>
+</div>
+<div class="divide-y divide-slate-800/70">
+<!-- Item 1 -->
+<div class="py-4 flex items-center justify-between gap-4">
+<div>
+<h3 class="text-sm font-semibold text-white flex items-center gap-2">
+<i class="fa-solid fa-bell text-emerald-400 text-xs"></i>
+<span>Notificações de metas</span>
+</h3>
+<p class="text-xs text-slate-400 mt-0.5">Receber alertas automáticos quando uma meta estiver próxima do prazo ou atingir 80% do target.</p>
+</div>
+<label class="switch flex-shrink-0 flex items-center">
+<input checked="" class="hidden" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<!-- Item 2 -->
+<div class="py-4 flex items-center justify-between gap-4">
+<div>
+<h3 class="text-sm font-semibold text-white flex items-center gap-2">
+<i class="fa-solid fa-chart-line text-blue-400 text-xs"></i>
+<span>Resumo semanal</span>
+</h3>
+<p class="text-xs text-slate-400 mt-0.5">Enviar resumo consolidado das atividades da empresa e vendas toda segunda-feira às 08:00.</p>
+</div>
+<label class="switch flex-shrink-0 flex items-center">
+<input checked="" class="hidden" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<!-- Item 3 -->
+<div class="py-4 flex items-center justify-between gap-4">
+<div>
+<h3 class="text-sm font-semibold text-white flex items-center gap-2">
+<i class="fa-solid fa-trash-can-arrow-up text-amber-400 text-xs"></i>
+<span>Confirmação ao apagar</span>
+</h3>
+<p class="text-xs text-slate-400 mt-0.5">Pedir autenticação secundária e confirmação expressa antes de remover registos sensíveis.</p>
+</div>
+<label class="switch flex-shrink-0 flex items-center">
+<input checked="" class="hidden" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<!-- Item 4 -->
+<div class="py-4 flex items-center justify-between gap-4">
+<div>
+<h3 class="text-sm font-semibold text-white flex items-center gap-2">
+<i class="fa-solid fa-fingerprint text-purple-400 text-xs"></i>
+<span>Autenticação de Dois Fatores (2FA) Obrigatória</span>
+</h3>
+<p class="text-xs text-slate-400 mt-0.5">Exigir código OTP por e-mail ou aplicação authenticator para todos os utilizadores do sistema.</p>
+</div>
+<label class="switch flex-shrink-0 flex items-center">
+<input checked="" class="hidden" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar Column -->
+<div class="space-y-6">
+<!-- CARD: Resumo de Acesso -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 shadow-xl p-6" data-purpose="access-summary-card">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold text-white flex items-center gap-2">
+<i class="fa-solid fa-chart-pie text-emerald-400 text-xs"></i>
+<span>Resumo de Acesso</span>
+</h3>
+<span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 font-semibold">Tempo Real</span>
+</div>
+<p class="text-xs text-slate-400 mb-6">Visão rápida da distribuição e estado dos utilizadores.</p>
+<div class="space-y-4">
+<div class="border-b border-slate-800/80 pb-3 flex items-center justify-between">
+<div>
+<div class="text-xs text-slate-400">Utilizadores registados</div>
+<div class="text-2xl font-extrabold text-white mt-0.5">3</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm">
+<i class="fa-solid fa-users"></i>
+</div>
+</div>
+<div class="border-b border-slate-800/80 pb-3 flex items-center justify-between">
+<div>
+<div class="text-xs text-slate-400">Contas ativas no sistema</div>
+<div class="text-2xl font-extrabold text-emerald-400 mt-0.5">2</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+<i class="fa-solid fa-user-check"></i>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<div class="text-xs text-slate-400">Administradores com acesso total</div>
+<div class="text-2xl font-extrabold text-rose-400 mt-0.5">1</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-sm">
+<i class="fa-solid fa-crown"></i>
+</div>
+</div>
+</div>
+</div>
+<!-- CARD: Perfis de Acesso -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 shadow-xl p-6" data-purpose="roles-info-card">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-sm font-bold text-white flex items-center gap-2">
+<i class="fa-solid fa-shield-halved text-emerald-400 text-xs"></i>
+<span>Perfis de Acesso</span>
+</h3>
+<span class="text-[10px] text-slate-400 font-mono">RBAC</span>
+</div>
+<p class="text-xs text-slate-400 mb-5">Hierarquia de permissões agrupadas por função na organização.</p>
+<div class="space-y-4 text-xs">
+<div class="border-l-2 border-rose-500 pl-3.5 bg-rose-500/5 py-2 rounded-r-xl border border-rose-500/20">
+<div class="font-bold text-rose-400 flex items-center justify-between">
+<span>Administrador</span>
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300">Nível 1</span>
+</div>
+<p class="text-slate-400 mt-1 leading-relaxed">Acesso total irrestrito ao sistema, faturas, auditorias e definições globais.</p>
+</div>
+<div class="border-l-2 border-amber-500 pl-3.5 bg-amber-500/5 py-2 rounded-r-xl border border-amber-500/20">
+<div class="font-bold text-amber-400 flex items-center justify-between">
+<span>Gestor</span>
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">Nível 2</span>
+</div>
+<p class="text-slate-400 mt-1 leading-relaxed">Operação global de vendas, gestão de equipas comerciais e emissão de relatórios.</p>
+</div>
+<div class="border-l-2 border-emerald-500 pl-3.5 bg-emerald-500/5 py-2 rounded-r-xl border border-emerald-500/20">
+<div class="font-bold text-emerald-400 flex items-center justify-between">
+<span>Colaborador</span>
+<span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Nível 3</span>
+</div>
+<p class="text-slate-400 mt-1 leading-relaxed">Acesso exclusivamente às tarefas, negócios e registos de clientes atribuídos diretamente.</p>
+</div>
+</div>
+</div>
+<!-- CARD: Dados da Empresa -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 shadow-xl p-6" data-purpose="company-details-card">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-sm font-bold text-white flex items-center gap-2">
+<i class="fa-solid fa-building-circle-check text-emerald-400 text-xs"></i>
+<span>Dados da Empresa</span>
+</h3>
+<span class="w-2 h-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400"></span>
+</div>
+<p class="text-xs text-slate-400 mb-5">Informação base visível nos documentos, orçamentos e faturas emitidas.</p>
+<form class="space-y-4 text-xs" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-medium text-slate-300 mb-1.5">Nome da Empresa</label>
+<input class="w-full text-xs font-semibold px-3.5 py-2.5 bg-[#0f172a] border border-slate-700/80 text-white rounded-xl focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition" type="text" value="Mix-CRM Soluções Lda"/>
+</div>
+<div>
+<label class="block font-medium text-slate-300 mb-1.5">NIF / Identificação Fiscal</label>
+<input class="w-full text-xs font-mono px-3.5 py-2.5 bg-[#0f172a] border border-slate-700/80 text-emerald-400 rounded-xl focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition" type="text" value="5418920194"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-medium text-slate-300 mb-1.5">Moeda Padrão</label>
+<select class="w-full text-xs font-medium px-3 py-2.5 bg-[#0f172a] border border-slate-700/80 text-slate-200 rounded-xl focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer">
+<option selected="">Kwanza (Kz)</option>
+<option>Euro (€)</option>
+<option>Dólar ($)</option>
+</select>
+</div>
+<div>
+<label class="block font-medium text-slate-300 mb-1.5">Idioma Base</label>
+<select class="w-full text-xs font-medium px-3 py-2.5 bg-[#0f172a] border border-slate-700/80 text-slate-200 rounded-xl focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer">
+<option selected="">Português</option>
+<option>English</option>
+<option>Español</option>
+</select>
+</div>
+</div>
+<div class="pt-2">
+<button class="w-full py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-semibold rounded-xl text-xs transition shadow-lg shadow-emerald-600/20 active:scale-95 flex items-center justify-center gap-2" type="submit">
+<i class="fa-solid fa-floppy-disk text-xs"></i>
+<span>Guardar preferências</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Bottom Persistent System Badges & Compliance Cards -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2" data-purpose="compliance-cards">
+<!-- Card 1: Backups & APD -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-base">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+</div>
+<div>
+<div class="text-xs font-bold text-white flex items-center gap-2">
+<span>Backups &amp; Segurança RGPD / APD</span>
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+</div>
+<p class="text-[11px] text-slate-400 mt-0.5">Cópia de segurança encriptada diária executada com sucesso há 4 horas.</p>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-emerald-400 transition">
+          Ver Log
+        </button>
+</div>
+<!-- Card 2: SAF-T -->
+<div class="bg-[#131d2e] rounded-2xl border border-slate-800/80 p-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-base">
+<i class="fa-solid fa-file-code"></i>
+</div>
+<div>
+<div class="text-xs font-bold text-white flex items-center gap-2">
+<span>Faturação Direta &amp; Exportação SAF-T (AO)</span>
+<span class="text-[9px] px-1.5 py-0.2 rounded bg-blue-500/20 text-blue-300 font-mono">AGT Válido</span>
+</div>
+<p class="text-[11px] text-slate-400 mt-0.5">Certificação ativa para emissão fiscal em conformidade com as regras AGT.</p>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-blue-400 transition">
+          Exportar XML
+        </button>
+</div>
+</section>
+</main>
+</div>
+<!-- END: Main Workspace -->
+<!-- BEGIN: Floating Action Widgets -->
+<div class="fixed bottom-6 right-6 z-50 flex items-center gap-3" data-purpose="floating-widget">
+<!-- MRS Colaboradores Badge -->
+<div class="bg-[#0f172a]/95 backdrop-blur-md shadow-2xl border border-slate-700/80 rounded-full px-4 py-2 flex items-center gap-2 text-xs font-semibold text-slate-200 shadow-emerald-950/40">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="tracking-wide">MRS Colaboradores</span>
+</div>
+<!-- WhatsApp Floating Support Button -->
+<a class="w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/40 text-2xl transition transform hover:scale-110 active:scale-95 ring-2 ring-emerald-400/30" href="#" title="Suporte via WhatsApp">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+</div>
+<!-- END: Floating Action Widgets -->
+<!-- Interactive Logic for Demonstration -->
+<script data-purpose="event-handlers">
+  document.addEventListener('DOMContentLoaded', () => {
+    // Toggle switch click handler
+    const switches = document.querySelectorAll('.switch');
+    switches.forEach(sw => {
+      sw.addEventListener('click', (e) => {
+        const input = sw.querySelector('input');
+        if (e.target !== input) {
+          input.checked = !input.checked;
+        }
+      });
+    });
+  });
+</script>
+</body></html>

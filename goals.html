@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mix-CRM PRO - Metas da Equipa</title>
+<!-- Tailwind CSS v3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Font Awesome Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans / Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=Alex+Brush&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              dark: '#0B0F17',
+              card: '#111827',
+              navy: '#0b1325'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+            signature: ['"Alex Brush"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="base-typography">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #070B12;
+      color: #E2E8F0;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0B0F17;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#070B12] text-slate-100 flex flex-col antialiased selection:bg-emerald-500 selection:text-white">
+<div class="flex flex-1 min-h-screen overflow-hidden">
+<!-- BEGIN: Sidebar -->
+<aside class="w-64 bg-[#0B0F17] text-slate-300 flex flex-col justify-between shrink-0 select-none border-r border-slate-800/80 z-20" data-purpose="sidebar-navigation">
+<!-- Top Section: Brand Header & Navigation Links -->
+
+<nav class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+<!-- Grupo 1: Módulo de Operações -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo de Operações</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-500/15 text-brand-400 font-semibold border border-brand-500/20 shadow-sm transition-all group" href="index.html">
+<svg class="w-4 h-4 text-brand-400 transition group-hover:scale-110" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Início</span>
+<span class="ml-auto w-1.5 h-1.5 rounded-full bg-brand-400 shadow-glow-emerald"></span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="organization.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Organizações</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="products.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Produtos</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-mono">8</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="business.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Negócios</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Fornecedores</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="cash.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Caixa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="customers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0"></svg>
+<span class="text-sm">Clientes</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-mono">10</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="activity.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Atividades</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 2: Módulo Financeiro -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo Financeiro</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="invoice.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Emitir Fatura</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="finances.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Finanças</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="salary.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Folha de Salário</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Pedidos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="goals.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="4" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="1" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Metas</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 3: Definições -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Definições</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="config.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<circle cx="12" cy="12" r="3" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Configurações</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+
+<!-- Bottom User Profile Card & Logout -->
+<div class="p-3 border-t border-slate-800/80 bg-[#090D15]">
+<div class="flex items-center justify-between p-2 rounded-xl bg-slate-900/80 border border-slate-800">
+<div class="flex items-center gap-2.5 overflow-hidden">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white font-bold text-xs ring-2 ring-emerald-500/20 shrink-0">
+              MS
+            </div>
+<div class="truncate">
+<p class="text-xs font-bold text-white truncate">Mauro Silva</p>
+<p class="text-[10px] text-slate-400 truncate">Administrador</p>
+</div>
+</div>
+<a class="text-slate-400 hover:text-rose-400 transition-colors p-1.5 hover:bg-rose-500/10 rounded-lg shrink-0" href="#" title="Terminar sessão">
+<i class="fa-solid fa-arrow-right-from-bracket rotate-180 text-xs"></i>
+</a>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: Main Area -->
+<div class="flex-1 flex flex-col min-w-0 overflow-y-auto custom-scrollbar bg-[#070B12]">
+<!-- BEGIN: TopBar Header -->
+<header class="bg-[#0B0F17]/90 backdrop-blur-md text-white h-16 border-b border-slate-800/80 px-6 sm:px-8 flex items-center justify-between shrink-0 sticky top-0 z-30" data-purpose="top-navigation">
+<div class="flex items-center gap-4">
+<!-- Workspace / Org Selector Dropdown -->
+<div class="relative">
+<button class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700/80 hover:border-slate-600 text-xs font-medium text-slate-200 transition-colors">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="font-semibold">Organização Principal</span>
+<i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+</button>
+</div>
+<span class="h-4 w-px bg-slate-800 hidden md:inline-block"></span>
+<span class="text-xs tracking-wide text-slate-400 hidden lg:inline-block">Mix-CRM Enterprise v4.8</span>
+</div>
+<!-- Top Right Elements: Search, Notifications, Theme, New Goal CTA -->
+<div class="flex items-center gap-3 sm:gap-4">
+<!-- Global Search Bar with Keyboard Shortcut Badge -->
+<div class="relative hidden sm:flex items-center">
+<i class="fa-solid fa-magnifying-glass absolute left-3 text-slate-400 text-xs"></i>
+<input class="w-64 lg:w-80 bg-slate-900/90 text-xs text-slate-100 placeholder-slate-400 pl-9 pr-14 py-2 rounded-lg border border-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all" placeholder="Pesquisar metas, equipas..." type="text"/>
+<span class="absolute right-2 px-1.5 py-0.5 text-[10px] font-semibold bg-slate-800 text-slate-400 rounded border border-slate-700 pointer-events-none">⌘K</span>
+</div>
+<!-- Notification Bell with Indicator Dot -->
+<button aria-label="Notificações" class="relative w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:border-slate-700 transition-colors">
+<i class="fa-regular fa-bell text-xs"></i>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-emerald-500 rounded-full ring-2 ring-[#0B0F17]"></span>
+</button>
+<!-- Theme toggle button -->
+<button aria-label="Alterar Tema" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-slate-700 transition-colors">
+<i class="fa-regular fa-moon text-xs"></i>
+</button>
+<!-- Signature / User Brand -->
+<div class="hidden xl:flex items-center px-1">
+<span class="font-signature text-2xl text-slate-300 tracking-wide select-none">Mauro</span>
+</div>
+<!-- Quick Action CTA: + Nova Meta -->
+<button class="flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-semibold px-3.5 py-1.5 rounded-lg text-xs shadow-lg shadow-emerald-950/60 transition-all active:scale-95" type="button">
+<i class="fa-solid fa-plus text-xs"></i>
+<span class="hidden sm:inline">Nova Meta</span>
+</button>
+</div>
+</header>
+<!-- END: TopBar Header -->
+<!-- BEGIN: Content Body -->
+<main class="flex-1 p-5 md:p-8 max-w-[1720px] w-full mx-auto space-y-6">
+<!-- Header: Page Title, Breadcrumbs, Status Pill and Actions -->
+<section class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2" data-purpose="page-header">
+<div class="space-y-1.5">
+<div class="flex items-center gap-2 text-xs">
+<span class="font-bold tracking-wider text-emerald-400 uppercase">Planeamento da Empresa</span>
+<span class="text-slate-600">/</span>
+<span class="text-slate-400 font-medium">Metas &amp; Objetivos</span>
+<span class="ml-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Ciclo 2026 Ativo
+              </span>
+</div>
+<h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center gap-3">
+              Metas da equipa
+            </h1>
+<p class="text-xs sm:text-sm text-slate-400 font-medium max-w-2xl">
+              Registe os objetivos importantes, acompanhe o progresso em tempo real e alinhe as metas comerciais com os resultados estratégicos.
+            </p>
+</div>
+<!-- Time Period Selector Pills & Export -->
+<div class="flex flex-wrap items-center gap-2 shrink-0">
+<div class="bg-slate-900/90 p-1 rounded-xl border border-slate-800 flex items-center text-xs">
+<button class="px-3 py-1 rounded-lg text-slate-400 hover:text-white font-medium transition-colors">Hoje</button>
+<button class="px-3 py-1 rounded-lg text-slate-400 hover:text-white font-medium transition-colors">Este mês</button>
+<button class="px-3 py-1 rounded-lg bg-emerald-600 text-white font-semibold shadow-sm transition-colors">Trimestre</button>
+<button class="px-3 py-1 rounded-lg text-slate-400 hover:text-white font-medium transition-colors">Ano</button>
+</div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition-all">
+<i class="fa-solid fa-file-export text-slate-400 text-xs"></i>
+<span>Exportar</span>
+</button>
+</div>
+</section>
+<!-- BEGIN: 4 Top KPI Cards -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-purpose="kpi-metrics">
+<!-- KPI 1: Progresso Global -->
+<div class="bg-[#111827]/90 rounded-2xl border border-slate-800/90 p-5 shadow-lg shadow-black/20 relative overflow-hidden group hover:border-slate-700 transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Progresso Global</span>
+<div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+<i class="fa-solid fa-chart-pie text-xs"></i>
+</div>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-black text-white">78%</span>
+<span class="text-xs font-medium text-emerald-400 flex items-center gap-0.5">
+<i class="fa-solid fa-arrow-trend-up text-[10px]"></i> +8.4%
+              </span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2 mb-2.5 overflow-hidden">
+<div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-2 rounded-full transition-all duration-700" style="width: 78%"></div>
+</div>
+<p class="text-[11px] text-slate-400 font-medium">2 metas em curso, 4 concluídas</p>
+</div>
+<!-- KPI 2: Metas em Curso -->
+<div class="bg-[#111827]/90 rounded-2xl border border-slate-800/90 p-5 shadow-lg shadow-black/20 relative overflow-hidden group hover:border-slate-700 transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Metas em Curso</span>
+<div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+<i class="fa-solid fa-spinner text-xs"></i>
+</div>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-black text-white">2</span>
+<span class="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30">
+                Alta Prioridade
+              </span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2 mb-2.5 overflow-hidden">
+<div class="bg-amber-500 h-2 rounded-full transition-all duration-700" style="width: 50%"></div>
+</div>
+<p class="text-[11px] text-slate-400 font-medium">Prazo médio estimado: 28 dias</p>
+</div>
+<!-- KPI 3: Metas Atingidas -->
+<div class="bg-[#111827]/90 rounded-2xl border border-slate-800/90 p-5 shadow-lg shadow-black/20 relative overflow-hidden group hover:border-slate-700 transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Metas Atingidas</span>
+<div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+<i class="fa-solid fa-circle-check text-xs"></i>
+</div>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-black text-white">4</span>
+<span class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                +33% vs trim. anterior
+              </span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2 mb-2.5 overflow-hidden">
+<div class="bg-emerald-500 h-2 rounded-full transition-all duration-700" style="width: 100%"></div>
+</div>
+<p class="text-[11px] text-slate-400 font-medium">100% dos relatórios arquivados</p>
+</div>
+<!-- KPI 4: Desempenho da Equipa -->
+<div class="bg-[#111827]/90 rounded-2xl border border-slate-800/90 p-5 shadow-lg shadow-black/20 relative overflow-hidden group hover:border-slate-700 transition-all">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Taxa de Eficiência</span>
+<div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+<i class="fa-solid fa-users-gear text-xs"></i>
+</div>
+</div>
+<div class="flex items-baseline gap-2 mb-2">
+<span class="text-3xl font-black text-white">94.2%</span>
+<span class="text-xs font-medium text-blue-400 flex items-center gap-0.5">
+<i class="fa-solid fa-shield-check text-[10px]"></i> Alta Precisão
+              </span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2 mb-2.5 overflow-hidden">
+<div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-2 rounded-full transition-all duration-700" style="width: 94%"></div>
+</div>
+<p class="text-[11px] text-slate-400 font-medium">Taxa de entrega no prazo acordado</p>
+</div>
+</section>
+<!-- END: 4 Top KPI Cards -->
+<!-- Main Two-Column Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- BEGIN: Left Column (Metas List - 65% width) -->
+<section class="lg:col-span-8 bg-[#111827]/90 border border-slate-800/90 rounded-2xl shadow-xl shadow-black/30 p-5 sm:p-7 space-y-5" data-purpose="goals-list-section">
+<!-- List Header with Count & Search Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800">
+<div class="flex items-center gap-3">
+<h2 class="text-base sm:text-lg font-bold text-white tracking-tight">Lista de metas</h2>
+<span class="px-2 py-0.5 rounded-full text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700">6 metas registadas</span>
+</div>
+<!-- Small in-card search -->
+<div class="flex items-center gap-2">
+<div class="relative">
+<i class="fa-solid fa-filter absolute left-2.5 top-2.5 text-slate-400 text-xs"></i>
+<select class="bg-slate-900 border border-slate-800 text-xs text-slate-300 rounded-lg pl-7 pr-8 py-1.5 focus:border-emerald-500 focus:ring-0">
+<option>Mais recentes</option>
+<option>Maior prioridade</option>
+<option>Prazo mais próximo</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Filter Badges Tabs -->
+<div class="flex flex-wrap items-center gap-2">
+<button class="px-3.5 py-1.5 text-xs font-semibold rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 shadow-sm" type="button">
+                Todas <span class="ml-1 opacity-70">(6)</span>
+</button>
+<button class="px-3.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:border-slate-700 transition-colors" type="button">
+                Em curso <span class="ml-1 px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 text-[10px]">2</span>
+</button>
+<button class="px-3.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:border-slate-700 transition-colors" type="button">
+                Concluídas <span class="ml-1 px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 text-[10px]">4</span>
+</button>
+<button class="px-3.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:border-slate-700 transition-colors" type="button">
+                Atrasadas <span class="ml-1 px-1.5 py-0.2 rounded bg-slate-800 text-slate-400 text-[10px]">0</span>
+</button>
+</div>
+<!-- Goals List Stack -->
+<div class="space-y-4">
+<!-- Meta Card 1: Em Progresso - Aumentar a carteira de clientes -->
+<div class="group border border-slate-800 hover:border-emerald-500/40 rounded-xl p-5 transition-all bg-[#0D1525]/80 hover:bg-[#0E1729] shadow-sm">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start gap-3.5 flex-1 min-w-0">
+<input class="mt-1.5 h-4 w-4 rounded border-slate-700 bg-slate-800 text-emerald-600 focus:ring-emerald-500 cursor-pointer" type="checkbox"/>
+<div class="space-y-3 flex-1 min-w-0">
+<!-- Title & Status -->
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2.5">
+<h3 class="font-bold text-white text-sm sm:text-base tracking-tight group-hover:text-emerald-400 transition-colors">
+                            Aumentar a carteira de clientes
+                          </h3>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/10 text-amber-300 border border-amber-500/30">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                          Em Progresso
+                        </span>
+</div>
+<!-- Sub-meta metadata tags -->
+<div class="flex flex-wrap items-center gap-2.5 text-xs text-slate-400 font-medium">
+<span class="px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700 text-[11px]">
+<i class="fa-solid fa-briefcase text-slate-400 mr-1"></i> Equipa Comercial
+                        </span>
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-emerald-600 flex items-center justify-center text-[10px] text-white font-bold">MS</div>
+<span class="text-slate-300 text-xs">Mauro Silva</span>
+</div>
+<span class="text-slate-600">•</span>
+<span class="flex items-center gap-1 text-slate-300">
+<i class="fa-regular fa-calendar text-slate-400"></i> Prazo: 31/10/2026
+                        </span>
+<span class="text-slate-600">•</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">
+                          Alta Prioridade
+                        </span>
+</div>
+<!-- Progress bar with count -->
+<div class="space-y-1 pt-1">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-slate-400">Progresso atual: 130 / 200 novos clientes</span>
+<span class="text-emerald-400">65%</span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+<div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<!-- Interactive checklist mini-tasks -->
+<div class="pt-2 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+<div class="flex items-center gap-2 text-emerald-400 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+<i class="fa-solid fa-circle-check text-xs"></i>
+<span class="truncate">Mapear leads (Concluído)</span>
+</div>
+<div class="flex items-center gap-2 text-slate-300 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+<i class="fa-regular fa-circle text-slate-500 text-xs"></i>
+<span class="truncate">50 propostas (80%)</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400 bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+<i class="fa-regular fa-circle text-slate-600 text-xs"></i>
+<span class="truncate">Contratos enterprise (45%)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="flex items-center gap-1 shrink-0">
+<button class="text-slate-400 hover:text-emerald-400 transition-colors p-1.5 rounded-lg hover:bg-slate-800" title="Editar meta" type="button">
+<i class="fa-regular fa-pen-to-square text-xs"></i>
+</button>
+<button class="text-slate-400 hover:text-rose-400 transition-colors p-1.5 rounded-lg hover:bg-slate-800" title="Remover meta" type="button">
+<i class="fa-solid fa-xmark text-sm"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Meta Card 2: Em Revisão - Organizar inventário mensal -->
+<div class="group border border-slate-800 hover:border-slate-700 rounded-xl p-5 transition-all bg-[#0D1525]/80 hover:bg-[#0E1729] shadow-sm">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start gap-3.5 flex-1 min-w-0">
+<input class="mt-1.5 h-4 w-4 rounded border-slate-700 bg-slate-800 text-emerald-600 focus:ring-emerald-500 cursor-pointer" type="checkbox"/>
+<div class="space-y-3 flex-1 min-w-0">
+<!-- Title & Status -->
+<div class="flex flex-wrap items-center justify-between gap-2">
+<h3 class="font-bold text-white text-sm sm:text-base tracking-tight group-hover:text-emerald-400 transition-colors">
+                          Organizar inventário mensal
+                        </h3>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/30">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                          Em Revisão
+                        </span>
+</div>
+<!-- Sub-meta metadata tags -->
+<div class="flex flex-wrap items-center gap-2.5 text-xs text-slate-400 font-medium">
+<span class="px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700 text-[11px]">
+<i class="fa-solid fa-boxes-stacked text-slate-400 mr-1"></i> Operações &amp; Logística
+                        </span>
+<div class="flex items-center gap-1.5">
+<div class="w-5 h-5 rounded-full bg-cyan-700 flex items-center justify-center text-[10px] text-white font-bold">CM</div>
+<span class="text-slate-300 text-xs">Carlos Mendes</span>
+</div>
+<span class="text-slate-600">•</span>
+<span class="flex items-center gap-1 text-slate-300">
+<i class="fa-regular fa-calendar text-slate-400"></i> Prazo: 30/09/2026
+                        </span>
+<span class="text-slate-600">•</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                          Média Prioridade
+                        </span>
+</div>
+<!-- Progress bar -->
+<div class="space-y-1 pt-1">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-slate-400">Contagem de 4 categorias finalizada</span>
+<span class="text-blue-400">85%</span>
+</div>
+<div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+<div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="flex items-center gap-1 shrink-0">
+<button class="text-slate-400 hover:text-emerald-400 transition-colors p-1.5 rounded-lg hover:bg-slate-800" title="Editar meta" type="button">
+<i class="fa-regular fa-pen-to-square text-xs"></i>
+</button>
+<button class="text-slate-400 hover:text-rose-400 transition-colors p-1.5 rounded-lg hover:bg-slate-800" title="Remover meta" type="button">
+<i class="fa-solid fa-xmark text-sm"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Meta Card 3: Concluída - Implementar certificação SAF-T AO -->
+<div class="group border border-slate-800/80 rounded-xl p-4 sm:p-5 transition-all bg-[#0B101D]/70 opacity-90 hover:opacity-100">
+<div class="flex items-center justify-between gap-4">
+<div class="flex items-center gap-3.5 flex-1 min-w-0">
+<div class="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center shrink-0">
+<i class="fa-solid fa-check text-xs"></i>
+</div>
+<div class="space-y-1 flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-bold text-slate-200 text-sm line-through decoration-emerald-500/60">
+                          Implementar certificação SAF-T AO
+                        </h3>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                          100% Concluída
+                        </span>
+</div>
+<div class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+<span class="text-slate-400">Financeiro</span>
+<span class="text-slate-600">•</span>
+<span>Resp: Mauro Silva</span>
+<span class="text-slate-600">•</span>
+<span class="text-emerald-400/90 font-medium">Finalizado em 15/08/2026</span>
+</div>
+</div>
+</div>
+<button class="text-slate-400 hover:text-slate-300 p-1.5" title="Detalhes">
+<i class="fa-solid fa-ellipsis-vertical text-xs"></i>
+</button>
+</div>
+</div>
+<!-- Meta Card 4: Concluída - Treinamento do novo CRM -->
+<div class="group border border-slate-800/80 rounded-xl p-4 sm:p-5 transition-all bg-[#0B101D]/70 opacity-90 hover:opacity-100">
+<div class="flex items-center justify-between gap-4">
+<div class="flex items-center gap-3.5 flex-1 min-w-0">
+<div class="w-5 h-5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center shrink-0">
+<i class="fa-solid fa-check text-xs"></i>
+</div>
+<div class="space-y-1 flex-1 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h3 class="font-bold text-slate-200 text-sm line-through decoration-emerald-500/60">
+                          Treinamento do novo CRM para equipe de vendas
+                        </h3>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                          100% Concluída
+                        </span>
+</div>
+<div class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+<span class="text-slate-400">Comercial &amp; RH</span>
+<span class="text-slate-600">•</span>
+<span class="text-emerald-400/90 font-medium">Finalizado com 18 colaboradores</span>
+</div>
+</div>
+</div>
+<button class="text-slate-400 hover:text-slate-300 p-1.5" title="Detalhes">
+<i class="fa-solid fa-ellipsis-vertical text-xs"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Add Quick Goal Dashed Button -->
+<button class="w-full py-3 border border-dashed border-slate-700/80 hover:border-emerald-500/60 rounded-xl text-slate-400 hover:text-emerald-400 text-xs font-semibold flex items-center justify-center gap-2 transition-all bg-slate-900/30 hover:bg-emerald-500/5">
+<i class="fa-solid fa-plus text-xs"></i>
+<span>Adicionar meta rápida à lista</span>
+</button>
+</section>
+<!-- END: Left Column (Metas List) -->
+<!-- BEGIN: Right Column (Form Nova Meta - 35% width) -->
+<section class="lg:col-span-4 bg-[#111827]/95 border border-slate-800 rounded-2xl shadow-xl shadow-black/40 p-6 sm:p-7 relative overflow-hidden" data-purpose="new-goal-form-section">
+<!-- Subtle emerald glow on top edge -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600"></div>
+<div class="mb-5">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+<i class="fa-solid fa-bullseye text-emerald-400 text-sm"></i>
+                  Criar Nova Meta
+                </h2>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Q4-2026</span>
+</div>
+<p class="text-xs text-slate-400 mt-1">Defina métricas, prazos e colaboradores responsáveis.</p>
+</div>
+<form class="space-y-4" onsubmit="event.preventDefault();">
+<!-- Field: Objetivo -->
+<div class="space-y-1.5">
+<label class="block text-xs font-semibold text-slate-300" for="goal-title">
+                  Nome do Objetivo <span class="text-emerald-400">*</span>
+</label>
+<input class="w-full text-xs rounded-xl bg-slate-900/80 border-slate-700/80 py-2.5 px-3.5 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 placeholder-slate-400 text-white transition-all shadow-inner" id="goal-title" placeholder="Ex.: Expandir vendas corporativas em Luanda" type="text"/>
+</div>
+<!-- Field: Área responsável -->
+<div class="space-y-1.5">
+<label class="block text-xs font-semibold text-slate-300" for="goal-area">Área Responsável</label>
+<div class="relative">
+<select class="w-full text-xs rounded-xl bg-slate-900/80 border-slate-700/80 py-2.5 px-3.5 pr-8 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-200 transition-all cursor-pointer" id="goal-area">
+<option value="Comercial">Equipa Comercial</option>
+<option value="Operações">Operações &amp; Logística</option>
+<option value="Financeiro">Financeiro &amp; Controladoria</option>
+<option value="Suporte">Suporte ao Cliente &amp; Sucesso</option>
+</select>
+</div>
+</div>
+<!-- Field: Responsável atribuído -->
+<div class="space-y-1.5">
+<label class="block text-xs font-semibold text-slate-300" for="goal-assignee">Responsável Atribuído</label>
+<div class="relative">
+<select class="w-full text-xs rounded-xl bg-slate-900/80 border-slate-700/80 py-2.5 px-3.5 pr-8 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-200 transition-all cursor-pointer" id="goal-assignee">
+<option value="MS">Mauro Silva (Administrador Comercial)</option>
+<option value="CM">Carlos Mendes (Supervisor de Operações)</option>
+<option value="AS">Ana Sousa (Gestora Financeira)</option>
+<option value="TL">Tiago Lourenço (Analista de Suporte)</option>
+</select>
+</div>
+</div>
+<!-- Field: Meta Quantitativa / Valor -->
+<div class="space-y-1.5">
+<label class="block text-xs font-semibold text-slate-300" for="goal-target-val">Meta Quantitativa / Valor Alvo</label>
+<div class="relative">
+<input class="w-full text-xs rounded-xl bg-slate-900/80 border-slate-700/80 py-2.5 px-3.5 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 placeholder-slate-400 text-white transition-all" id="goal-target-val" placeholder="Ex.: 50.000.000 Kz ou 50 Contratos" type="text"/>
+</div>
+</div>
+<!-- Field: Prazo -->
+<div class="space-y-1.5">
+<label class="block text-xs font-semibold text-slate-300" for="goal-date">Prazo Limite</label>
+<div class="relative">
+<input class="w-full text-xs rounded-xl bg-slate-900/80 border-slate-700/80 py-2.5 px-3.5 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-200 transition-all" id="goal-date" type="date" value="2026-10-31"/>
+</div>
+</div>
+<!-- Field: Prioridade Selector Pills -->
+<div class="space-y-1.5">
+<label class="block text-xs font-semibold text-slate-300">Nível de Prioridade</label>
+<div class="grid grid-cols-4 gap-1.5">
+<label class="cursor-pointer">
+<input class="peer sr-only" name="priority" type="radio" value="Baixa"/>
+<span class="block text-center py-2 px-1 rounded-lg border border-slate-700 bg-slate-900/60 text-[11px] font-medium text-slate-400 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/20 peer-checked:text-emerald-300 transition-all">
+                      Baixa
+                    </span>
+</label>
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="priority" type="radio" value="Media"/>
+<span class="block text-center py-2 px-1 rounded-lg border border-slate-700 bg-slate-900/60 text-[11px] font-medium text-slate-400 peer-checked:border-blue-500 peer-checked:bg-blue-500/20 peer-checked:text-blue-300 transition-all">
+                      Média
+                    </span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="priority" type="radio" value="Alta"/>
+<span class="block text-center py-2 px-1 rounded-lg border border-slate-700 bg-slate-900/60 text-[11px] font-medium text-slate-400 peer-checked:border-amber-500 peer-checked:bg-amber-500/20 peer-checked:text-amber-300 transition-all">
+                      Alta
+                    </span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="priority" type="radio" value="Critica"/>
+<span class="block text-center py-2 px-1 rounded-lg border border-slate-700 bg-slate-900/60 text-[11px] font-medium text-slate-400 peer-checked:border-rose-500 peer-checked:bg-rose-500/20 peer-checked:text-rose-300 transition-all">
+                      Crítica
+                    </span>
+</label>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-3">
+<button class="w-full bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 active:scale-[0.98] text-white font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-lg shadow-emerald-950/60 flex items-center justify-center gap-2" type="submit">
+<i class="fa-solid fa-check"></i>
+<span>Adicionar meta</span>
+</button>
+</div>
+<!-- SMART Guideline Card -->
+<div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-400 flex items-start gap-2.5">
+<i class="fa-regular fa-lightbulb text-amber-400 text-sm mt-0.5 shrink-0"></i>
+<p>
+<strong class="text-slate-200">Dica SMART:</strong> Metas específicas e com prazos claros têm 85% mais chances de serem atingidas dentro do trimestre.
+                </p>
+</div>
+</form>
+</section>
+<!-- END: Right Column (Form Nova Meta) -->
+</div>
+<!-- Security and Audit Badge / Micro-footer -->
+<footer class="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1.5">
+<i class="fa-solid fa-lock text-emerald-400 text-xs"></i>
+              Backups &amp; Segurança RGPD / APD
+            </span>
+<span class="text-slate-700">•</span>
+<span class="flex items-center gap-1.5">
+<i class="fa-solid fa-cloud-arrow-up text-blue-400 text-xs"></i>
+              Sincronização com Módulos Operacionais
+            </span>
+</div>
+<div>
+<span>Mix-CRM Cloud Platform © 2026</span>
+</div>
+</footer>
+</main>
+<!-- END: Content Body -->
+</div>
+<!-- END: Main Area -->
+</div>
+<!-- BEGIN: Floating Action Buttons (MRS Colaboradores Assistant & WhatsApp) -->
+<div class="fixed bottom-6 right-6 flex items-center gap-3 z-50" data-purpose="floating-support">
+<!-- MRS Colaboradores floating assistant widget with online indicator -->
+<button class="hidden sm:flex items-center gap-2.5 px-4 py-2.5 bg-[#0F172A] hover:bg-slate-800 border border-slate-700 rounded-full shadow-2xl shadow-black/80 text-white text-xs font-semibold transition-all hover:scale-105 active:scale-95 group">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+</span>
+<span class="tracking-wide">MRS COLABORADORES</span>
+<i class="fa-solid fa-comment-dots text-emerald-400 text-xs"></i>
+</button>
+<!-- WhatsApp green floating button -->
+<a class="w-12 h-12 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full shadow-xl shadow-emerald-950/60 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95" href="https://whatsapp.com" rel="noopener noreferrer" target="_blank" title="Suporte via WhatsApp">
+<i class="fa-brands fa-whatsapp text-2xl"></i>
+</a>
+</div>
+<!-- END: Floating Action Buttons -->
+</body></html>

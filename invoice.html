@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#0a0f1d] text-slate-200 antialiased" lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Emitir Fatura | Mix-CRM Financeiro</title>
+<!-- Tailwind CSS v3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Font Awesome Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts: Inter & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+            surface: {
+              950: '#070b14',
+              900: '#0b1120',
+              850: '#111827',
+              800: '#161f36',
+              700: '#1e293b',
+              600: '#334155'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            script: ['"Great Vibes"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scrollbars">
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b1120;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+<style data-purpose="document-paper-effects">
+    .invoice-glow {
+      box-shadow: 0 0 50px -12px rgba(37, 99, 235, 0.12), 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+    }
+    .input-clean {
+      background-color: transparent;
+      border-color: rgba(255, 255, 255, 0.08);
+      transition: all 0.2s ease;
+    }
+    .input-clean:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      background-color: rgba(15, 23, 42, 0.6);
+    }
+  </style>
+</head>
+<body class="h-full flex overflow-hidden font-sans bg-[#090d18] text-slate-100">
+<!-- BEGIN: LeftSidebar -->
+<aside class="w-64 flex-shrink-0 bg-[#070b14] border-r border-slate-800/80 flex flex-col justify-between select-none" data-purpose="main-sidebar">
+<!-- Top section with brand navigation -->
+
+<nav class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+<!-- Grupo 1: Módulo de Operações -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo de Operações</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-500/15 text-brand-400 font-semibold border border-brand-500/20 shadow-sm transition-all group" href="index.html">
+<svg class="w-4 h-4 text-brand-400 transition group-hover:scale-110" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Início</span>
+<span class="ml-auto w-1.5 h-1.5 rounded-full bg-brand-400 shadow-glow-emerald"></span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="organization.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Organizações</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="products.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Produtos</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-mono">8</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="business.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Negócios</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Fornecedores</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="cash.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Caixa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="customers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0"></svg>
+<span class="text-sm">Clientes</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-mono">10</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="activity.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Atividades</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 2: Módulo Financeiro -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo Financeiro</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="invoice.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Emitir Fatura</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="finances.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Finanças</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="salary.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Folha de Salário</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Pedidos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="goals.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="4" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="1" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Metas</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 3: Definições -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Definições</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="config.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<circle cx="12" cy="12" r="3" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Configurações</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+
+<!-- Sidebar Bottom: User & Logout -->
+<div class="p-3 border-t border-slate-800/70 bg-[#060911]">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-amber-400/90 hover:text-amber-300 hover:bg-amber-400/10 font-medium text-sm transition-colors" href="#">
+<i class="fa-solid fa-arrow-right-from-bracket rotate-180 text-sm"></i>
+<span>Sair</span>
+</a>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentArea -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- BEGIN: TopBar -->
+<header class="h-16 border-b border-slate-800/80 bg-[#0b1120] flex items-center justify-between px-8 flex-shrink-0 z-10" data-purpose="top-navigation-bar">
+<!-- Left side: Breadcrumb indicator -->
+<div class="flex items-center gap-2 text-sm">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+<i class="fa-solid fa-circle text-[7px] text-blue-400"></i>
+          Ambiente Produção
+        </span>
+<span class="text-slate-600">/</span>
+<span class="text-slate-400 font-medium">Mix CRM Finanças</span>
+</div>
+<!-- Right side: User signature, theme toggle, and search filter -->
+<div class="flex items-center gap-5">
+<!-- Calligraphic Signature for Mauro -->
+<div class="text-right">
+<span class="font-script text-2xl text-blue-200 tracking-wider">Mauro</span>
+</div>
+<!-- Moon / Dark mode pill toggle -->
+<button aria-label="Alterar Tema" class="w-9 h-9 rounded-full bg-slate-800/90 border border-slate-700/70 text-slate-300 flex items-center justify-center hover:text-white hover:border-slate-600 transition-all" type="button">
+<i class="fa-regular fa-moon text-sm"></i>
+</button>
+<!-- Search Bar with Context Select -->
+<div class="relative flex items-center bg-slate-900 border border-slate-700/80 rounded-lg shadow-inner overflow-hidden focus-within:border-blue-500 transition-all">
+<div class="relative">
+<select class="appearance-none bg-slate-800/90 text-xs font-semibold text-slate-300 pl-3 pr-7 py-2 border-0 border-r border-slate-700 focus:ring-0 focus:outline-none cursor-pointer">
+<option>Organização</option>
+<option>Clientes</option>
+<option>Faturas</option>
+<option>NIF</option>
+</select>
+<i class="fa-solid fa-chevron-down absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-slate-400 pointer-events-none"></i>
+</div>
+<div class="relative flex items-center">
+<input class="w-56 bg-transparent text-xs text-slate-200 placeholder-slate-500 pl-3 pr-8 py-2 border-0 focus:ring-0 focus:outline-none" placeholder="Pesquisar Clientes..." type="text"/>
+<i class="fa-solid fa-magnifying-glass text-slate-400 text-xs absolute right-3 pointer-events-none"></i>
+</div>
+</div>
+<!-- Notification bell icon -->
+<button class="relative p-2 text-slate-400 hover:text-white" type="button">
+<i class="fa-regular fa-bell text-sm"></i>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-blue-500 rounded-full ring-2 ring-[#0b1120]"></span>
+</button>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: DocumentWorkspace -->
+<main class="flex-1 overflow-y-auto p-6 md:p-8 bg-[#0a0f1d] flex flex-col items-center" data-purpose="invoice-workspace">
+<!-- Sub-header: Title and Main Action Buttons -->
+<div class="w-full max-w-5xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+<div>
+<p class="text-xs font-bold uppercase tracking-wider text-blue-400 mb-1">MÓDULO FINANCEIRO</p>
+<h1 class="text-2xl md:text-3xl font-extrabold tracking-tight font-display text-white">Emitir fatura</h1>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-300 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 rounded-lg shadow-sm transition-all active:scale-95" type="button">
+<i class="fa-solid fa-rotate-left text-xs"></i>
+<span>Repor modelo</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-slate-200 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 rounded-lg shadow-sm transition-all active:scale-95" type="button">
+<i class="fa-regular fa-floppy-disk text-xs"></i>
+<span>Guardar Rascunho</span>
+</button>
+<button class="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-700 rounded-lg shadow-lg shadow-blue-600/30 transition-all active:scale-95" type="button">
+<i class="fa-solid fa-print text-xs"></i>
+<span>Imprimir / Exportar PDF</span>
+</button>
+</div>
+</div>
+<!-- BEGIN: InvoiceCanvasContainer -->
+<div class="w-full max-w-5xl bg-[#111726] border border-slate-800 rounded-xl p-8 md:p-10 invoice-glow relative text-slate-200" data-purpose="invoice-sheet">
+<!-- Top Row: Issuer Logo & Document Meta -->
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 pb-8 border-b border-slate-800/90">
+<!-- Company Info Left Column -->
+<div class="flex items-start gap-4">
+<!-- Brand Icon / Avatar -->
+<div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-blue-700 to-blue-500 flex items-center justify-center text-white shadow-lg shadow-blue-600/20 flex-shrink-0">
+<i class="fa-solid fa-shapes text-2xl"></i>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold font-display text-white tracking-tight">Mix CRM</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">PRO</span>
+</div>
+<p class="text-xs text-slate-400">Avenida 4 de Fevereiro, Luanda, Angola</p>
+<p class="text-xs text-slate-400">NIF: 5418920194 • contacto@mixcrm.ao • +244 923 000 111</p>
+</div>
+</div>
+<!-- Invoice Title & Document Code Right Column -->
+<div class="text-left md:text-right space-y-1">
+<h2 class="text-3xl font-extrabold text-blue-400 tracking-tight font-display">Fatura</h2>
+<p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">NÚMERO DO DOCUMENTO</p>
+<p class="text-sm font-mono font-bold text-slate-200 bg-slate-900/80 px-2.5 py-1 rounded inline-block border border-slate-800">
+              FT-2026-001
+            </p>
+<div class="pt-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                Rascunho
+              </span>
+</div>
+</div>
+</div>
+<!-- Client & Dates Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 py-8 border-b border-slate-800/90 text-xs">
+<!-- Client Input Section (6 Cols) -->
+<div class="md:col-span-6 space-y-3">
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+              Faturar a
+            </label>
+<div class="space-y-2">
+<div class="relative">
+<input class="w-full text-sm font-semibold text-white bg-slate-900/60 rounded-lg border border-slate-800 px-3.5 py-2.5 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder-slate-500" placeholder="Nome do cliente ou empresa" type="text" value="Banco BAI - Luanda Corporate"/>
+<i class="fa-solid fa-magnifying-glass text-slate-500 absolute right-3.5 top-1/2 -translate-y-1/2 text-xs"></i>
+</div>
+<input class="w-full text-xs text-slate-300 bg-slate-900/40 rounded-lg border border-slate-800/80 px-3.5 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder-slate-500" placeholder="NIF / Identificação fiscal" type="text" value="NIF: 5410098231"/>
+<input class="w-full text-xs text-slate-300 bg-slate-900/40 rounded-lg border border-slate-800/80 px-3.5 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder-slate-500" placeholder="Morada da empresa" type="text" value="Rua Rainha Ginga, Edifício Sede, Luanda"/>
+<input class="w-full text-xs text-slate-300 bg-slate-900/40 rounded-lg border border-slate-800/80 px-3.5 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder-slate-500" placeholder="Email financeiro" type="email" value="contabilidade@bancobai.ao"/>
+</div>
+</div>
+<!-- Document Attributes & Dates (6 Cols) -->
+<div class="md:col-span-6 grid grid-cols-2 gap-4">
+<!-- Issue Date -->
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                Data de Emissão
+              </label>
+<div class="relative">
+<input class="w-full text-xs text-slate-200 bg-slate-900/60 rounded-lg border border-slate-800 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 [color-scheme:dark]" type="date" value="2026-11-12"/>
+</div>
+</div>
+<!-- Due Date -->
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                Data de Vencimento
+              </label>
+<div class="relative">
+<input class="w-full text-xs text-slate-200 bg-slate-900/60 rounded-lg border border-slate-800 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 [color-scheme:dark]" type="date" value="2026-12-12"/>
+</div>
+</div>
+<!-- Currency -->
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                Moeda
+              </label>
+<select class="w-full text-xs text-slate-200 bg-slate-900/60 rounded-lg border border-slate-800 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+<option selected="">Kwanza (Kz)</option>
+<option>Dólar Americano ($ USD)</option>
+<option>Euro (€ EUR)</option>
+</select>
+</div>
+<!-- Tax Scheme / Status -->
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                Regime de IVA
+              </label>
+<select class="w-full text-xs text-slate-200 bg-slate-900/60 rounded-lg border border-slate-800 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+<option selected="">Regime Geral (14%)</option>
+<option>Regime Simplificado (7%)</option>
+<option>Isento (Art. 12º)</option>
+</select>
+</div>
+<!-- Serie & Document Category Indicator -->
+<div class="col-span-2 bg-slate-900/40 p-3 rounded-lg border border-slate-800/80 flex items-center justify-between">
+<div>
+<span class="text-[10px] uppercase text-slate-500 font-semibold block">Série Certificada</span>
+<span class="text-xs font-mono font-medium text-slate-300">MIX2026/01</span>
+</div>
+<div class="text-right">
+<span class="text-[10px] uppercase text-slate-500 font-semibold block">Software Certificado nº</span>
+<span class="text-xs font-mono font-medium text-slate-300">92/AGT/2026</span>
+</div>
+</div>
+</div>
+</div>
+<!-- BEGIN: InvoiceItemsTable -->
+<div class="py-6 border-b border-slate-800/90">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-900/70 border-b border-slate-800 text-[11px] uppercase tracking-wider text-slate-400 font-semibold">
+<th class="py-3 px-4 w-[45%]">Descrição do Produto ou Serviço</th>
+<th class="py-3 px-3 w-[12%] text-center">Qtd.</th>
+<th class="py-3 px-3 w-[15%] text-right">Preço Unit.</th>
+<th class="py-3 px-3 w-[10%] text-center">IVA %</th>
+<th class="py-3 px-4 w-[15%] text-right">Total</th>
+<th class="py-3 px-2 w-[3%] text-center"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-800/60 text-xs">
+<!-- Sample Line Item 1 -->
+<tr class="hover:bg-slate-900/30 transition-colors group">
+<td class="py-3 px-4">
+<input class="w-full bg-transparent border-0 focus:ring-0 p-0 text-slate-200 font-medium placeholder-slate-600 text-xs" placeholder="Descrição do item" type="text" value="Subscrição Corporativa Mix-CRM Enterprise - Licenciamento Anual"/>
+</td>
+<td class="py-3 px-3 text-center">
+<input class="w-16 bg-slate-900/80 border border-slate-800 rounded px-2 py-1 text-center text-slate-200 focus:border-blue-500 focus:ring-0 text-xs" min="1" type="number" value="1"/>
+</td>
+<td class="py-3 px-3 text-right">
+<input class="w-28 bg-slate-900/80 border border-slate-800 rounded px-2 py-1 text-right text-slate-200 focus:border-blue-500 focus:ring-0 text-xs font-mono" type="text" value="1 250 000,00"/>
+</td>
+<td class="py-3 px-3 text-center">
+<select class="bg-slate-900/80 border border-slate-800 rounded px-2 py-1 text-center text-slate-200 focus:border-blue-500 focus:ring-0 text-xs">
+<option>14%</option>
+<option>7%</option>
+<option>0%</option>
+</select>
+</td>
+<td class="py-3 px-4 text-right font-mono font-semibold text-slate-200">
+                    1 250 000,00 Kz
+                  </td>
+<td class="py-3 px-2 text-center">
+<button class="text-slate-600 hover:text-rose-400 transition-colors p-1" title="Remover Linha" type="button">
+<i class="fa-solid fa-xmark text-sm"></i>
+</button>
+</td>
+</tr>
+<!-- Sample Line Item 2 -->
+<tr class="hover:bg-slate-900/30 transition-colors group">
+<td class="py-3 px-4">
+<input class="w-full bg-transparent border-0 focus:ring-0 p-0 text-slate-200 font-medium placeholder-slate-600 text-xs" placeholder="Descrição do item" type="text" value="Consultoria Técnica de Integração de API &amp; Migração de Base de Dados"/>
+</td>
+<td class="py-3 px-3 text-center">
+<input class="w-16 bg-slate-900/80 border border-slate-800 rounded px-2 py-1 text-center text-slate-200 focus:border-blue-500 focus:ring-0 text-xs" min="1" type="number" value="2"/>
+</td>
+<td class="py-3 px-3 text-right">
+<input class="w-28 bg-slate-900/80 border border-slate-800 rounded px-2 py-1 text-right text-slate-200 focus:border-blue-500 focus:ring-0 text-xs font-mono" type="text" value="175 000,00"/>
+</td>
+<td class="py-3 px-3 text-center">
+<select class="bg-slate-900/80 border border-slate-800 rounded px-2 py-1 text-center text-slate-200 focus:border-blue-500 focus:ring-0 text-xs">
+<option>14%</option>
+<option>7%</option>
+<option>0%</option>
+</select>
+</td>
+<td class="py-3 px-4 text-right font-mono font-semibold text-slate-200">
+                    350 000,00 Kz
+                  </td>
+<td class="py-3 px-2 text-center">
+<button class="text-slate-600 hover:text-rose-400 transition-colors p-1" title="Remover Linha" type="button">
+<i class="fa-solid fa-xmark text-sm"></i>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Add Line Button -->
+<div class="mt-4">
+<button class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 rounded-lg border border-blue-500/30 transition-colors" type="button">
+<i class="fa-solid fa-plus text-xs"></i>
+<span>Adicionar linha</span>
+</button>
+</div>
+</div>
+<!-- END: InvoiceItemsTable -->
+<!-- Financial Summary & Notes Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 py-8 border-b border-slate-800/90 text-xs">
+<!-- Payment Info & Notes (7 Cols) -->
+<div class="md:col-span-7 space-y-4">
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                Dados de Pagamento (IBAN / Banco)
+              </label>
+<textarea class="w-full bg-slate-900/60 border border-slate-800 rounded-lg p-2.5 text-slate-300 placeholder-slate-600 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500 font-mono" placeholder="IBAN ou instruções de pagamento..." rows="2">AO06 0040 0000 9283 1029 1012 3 • Banco Angolano de Investimentos (BAI) - Mix CRM Tecnologia Lda</textarea>
+</div>
+<div>
+<label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                Notas / Termos Comerciais
+              </label>
+<textarea class="w-full bg-slate-900/60 border border-slate-800 rounded-lg p-2.5 text-slate-300 placeholder-slate-600 text-xs focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Observações adicionais..." rows="2">O pagamento deve ser liquidado no prazo máximo de 30 dias após emissão da presente fatura. Os serviços contratados incluem suporte contínuo 24/7 conforme acordo SLA-2026.</textarea>
+</div>
+</div>
+<!-- Totals Column (5 Cols) -->
+<div class="md:col-span-5 bg-slate-900/50 rounded-xl p-5 border border-slate-800/80 flex flex-col justify-between">
+<div class="space-y-2.5">
+<div class="flex justify-between items-center text-slate-400 text-xs">
+<span>Subtotal</span>
+<span class="font-mono text-slate-200">1 600 000,00 Kz</span>
+</div>
+<div class="flex justify-between items-center text-slate-400 text-xs">
+<span>Total IVA (14%)</span>
+<span class="font-mono text-slate-200">224 000,00 Kz</span>
+</div>
+<div class="flex justify-between items-center text-slate-400 text-xs">
+<span>Retenção na Fonte (6,5%)</span>
+<span class="font-mono text-slate-400">- 104 000,00 Kz</span>
+</div>
+<div class="border-t border-slate-800 pt-2.5"></div>
+</div>
+<div class="pt-3">
+<div class="flex justify-between items-baseline">
+<span class="text-sm font-bold uppercase tracking-wider text-white">Total a pagar</span>
+<div class="text-right">
+<span class="text-2xl font-black font-mono text-blue-400">1 720 000,00 Kz</span>
+<span class="block text-[10px] text-slate-500">Impostos e retenções calculados</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Fiscal Disclaimer -->
+<div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-slate-500">
+<p>Obrigado pela preferência e confiança.</p>
+<div class="flex items-center gap-2">
+<i class="fa-solid fa-shield-halved text-blue-400"></i>
+<span>Documento processado por computador • Mix CRM Software certificado nº 92/AGT/2026 • SAF-T AO</span>
+</div>
+</div>
+</div>
+<!-- END: InvoiceCanvasContainer -->
+<!-- Bottom Spacer -->
+<div class="h-10"></div>
+</main>
+<!-- END: DocumentWorkspace -->
+</div>
+<!-- END: MainContentArea -->
+<!-- BEGIN: FloatingWidgets -->
+<!-- Colaboradores MRS & WhatsApp Quick-Action Floating Button -->
+<aside class="fixed bottom-6 right-6 flex items-center gap-3 z-50" data-purpose="floating-dock">
+<!-- MRS Colaboradores Badge / Status Button -->
+<div class="hidden sm:flex items-center gap-2.5 px-3.5 py-2 bg-slate-900/95 backdrop-blur border border-slate-700/80 rounded-full shadow-2xl hover:border-slate-600 transition-all cursor-pointer">
+<div class="relative flex items-center justify-center">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping absolute"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 relative"></span>
+</div>
+<div class="text-left">
+<p class="text-[11px] font-bold text-white leading-tight">MRS Colaboradores</p>
+<p class="text-[9px] text-slate-400 leading-tight">3 agentes online</p>
+</div>
+</div>
+<!-- WhatsApp Floating Action -->
+<a class="w-12 h-12 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/30 hover:scale-105 active:scale-95 transition-all" href="https://wa.me/" rel="noopener noreferrer" target="_blank" title="Suporte Mix CRM via WhatsApp">
+<i class="fa-brands fa-whatsapp text-2xl"></i>
+</a>
+</aside>
+<!-- END: FloatingWidgets -->
+</body></html>

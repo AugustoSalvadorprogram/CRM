@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+<html class="dark h-full" lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mix-CRM PRO | Negócios &amp; Pipeline de Vendas</title>
+<!-- Tailwind CSS v3 with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Font Awesome Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans / Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              dark: '#034430'
+            },
+            surface: {
+              950: '#070a10',
+              900: '#0b0f17',
+              850: '#0f172a',
+              800: '#131e33',
+              750: '#1a2744',
+              700: '#1e293b',
+              600: '#334155'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Styles for Kanban Custom Scrollbar & Fluid Layout -->
+<style data-purpose="custom-scrollbars">
+    /* Subtle custom horizontal scrollbar for kanban board */
+    .kanban-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+    .kanban-scroll::-webkit-scrollbar-track {
+      background: #0b0f17;
+      border-radius: 4px;
+    }
+    .kanban-scroll::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+    .kanban-scroll::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+<style data-purpose="card-visuals">
+    .column-min-w {
+      min-width: 290px;
+      width: 290px;
+    }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body class="bg-[#080c14] text-slate-200 font-sans antialiased h-full flex overflow-hidden selection:bg-brand-500 selection:text-white">
+<!-- BEGIN: LeftSidebar -->
+<aside class="w-64 flex-shrink-0 bg-[#0b0f17] border-r border-slate-800/80 flex flex-col justify-between z-30 select-none">
+<!-- Top Branding & Navigation Area -->
+
+<nav class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+<!-- Grupo 1: Módulo de Operações -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo de Operações</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-500/15 text-brand-400 font-semibold border border-brand-500/20 shadow-sm transition-all group" href="index.html">
+<svg class="w-4 h-4 text-brand-400 transition group-hover:scale-110" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Início</span>
+<span class="ml-auto w-1.5 h-1.5 rounded-full bg-brand-400 shadow-glow-emerald"></span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="organization.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Organizações</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="products.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Produtos</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-mono">8</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="business.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Negócios</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Fornecedores</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="cash.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Caixa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="customers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0"></svg>
+<span class="text-sm">Clientes</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-mono">10</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="activity.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Atividades</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 2: Módulo Financeiro -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo Financeiro</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="invoice.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Emitir Fatura</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="finances.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Finanças</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="salary.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Folha de Salário</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Pedidos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="goals.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="4" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="1" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Metas</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 3: Definições -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Definições</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="config.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<circle cx="12" cy="12" r="3" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Configurações</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+
+<!-- User Profile Bar Bottom -->
+<div class="p-3 border-t border-slate-800/80 bg-[#090d15]/80">
+<div class="flex items-center justify-between p-2 rounded-xl bg-slate-900/60 border border-slate-800/60 hover:border-slate-700/80 transition-colors">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center font-bold text-slate-950 text-sm shadow-sm">
+            M
+          </div>
+<div class="truncate">
+<div class="text-xs font-semibold text-white truncate">Mauro</div>
+<div class="text-[10px] text-slate-400 font-medium">Administrador</div>
+</div>
+</div>
+<button class="text-slate-400 hover:text-rose-400 p-2 rounded-lg hover:bg-slate-800/80 transition-colors" title="Sair da Sessão">
+<i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+</button>
+</div>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentWrapper -->
+<div class="flex-1 flex flex-col h-full min-w-0 bg-[#090e17] overflow-hidden">
+<!-- Top Header Navigation Bar -->
+<header class="h-16 border-b border-slate-800/80 bg-[#0b0f17]/90 backdrop-blur-md px-6 flex items-center justify-between flex-shrink-0 z-20">
+<!-- Left: Organization Switcher -->
+<div class="flex items-center gap-3">
+<div class="relative">
+<button class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700/70 text-slate-200 text-xs font-medium hover:border-slate-600 transition-colors">
+<span class="w-2 h-2 rounded-full bg-brand-400"></span>
+<span>Organização Principal</span>
+<i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+</button>
+</div>
+</div>
+<!-- Center: Universal Search Bar -->
+<div class="flex-1 max-w-xl mx-6">
+<div class="relative">
+<i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+<input class="w-full bg-[#111827]/70 border border-slate-700/60 rounded-xl pl-9 pr-12 py-1.5 text-xs text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500" placeholder="Pesquisar clientes, negócios, propostas ou faturas... (Ctrl + K)" type="text"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">⌘K</span>
+</div>
+</div>
+<!-- Right: Action Icons & CTA Button -->
+<div class="flex items-center gap-3">
+<!-- Notification Bell -->
+<button class="relative w-8 h-8 rounded-lg bg-slate-800/60 border border-slate-700/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800 flex items-center justify-center transition-colors">
+<i class="fa-regular fa-bell text-xs"></i>
+<span class="absolute top-1 right-1 w-2 h-2 bg-brand-500 rounded-full"></span>
+</button>
+<!-- Dark Mode Toggle Indicator -->
+<button class="w-8 h-8 rounded-lg bg-slate-800/60 border border-slate-700/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800 flex items-center justify-center transition-colors">
+<i class="fa-solid fa-moon text-xs"></i>
+</button>
+<!-- Primary Action Button -->
+<button class="flex items-center gap-2 bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-slate-950 font-bold px-3.5 py-1.5 rounded-lg text-xs transition-all shadow-md shadow-brand-500/20">
+<i class="fa-solid fa-plus text-xs font-black"></i>
+<span>Novo Negócio</span>
+</button>
+</div>
+</header>
+<!-- Main Scrollable Area containing Views & Kanban -->
+<main class="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+<!-- BEGIN: PageHeaderAndKPIs -->
+<section class="space-y-5" data-purpose="page-header">
+<!-- Title and Global Filters -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2.5 mb-1.5">
+<span class="text-[11px] font-bold tracking-widest text-brand-400 uppercase bg-brand-500/10 px-2 py-0.5 rounded border border-brand-500/20">Visão Comercial</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-950/90 text-emerald-300 border border-emerald-700/60">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Pipeline Ativo
+              </span>
+</div>
+<h1 class="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">Negócios</h1>
+<p class="text-xs text-slate-400 mt-1">Acompanhe cada oportunidade comercial, propostas e estágios de fecho em tempo real.</p>
+</div>
+<!-- Date Filters & Actions -->
+<div class="flex items-center gap-2.5">
+<div class="inline-flex p-1 bg-slate-900 border border-slate-800 rounded-xl text-xs">
+<button class="px-3 py-1 font-medium text-slate-400 hover:text-slate-200 rounded-lg transition-colors">Hoje</button>
+<button class="px-3 py-1 font-semibold text-brand-300 bg-brand-500/15 border border-brand-500/30 rounded-lg shadow-sm">Este mês</button>
+<button class="px-3 py-1 font-medium text-slate-400 hover:text-slate-200 rounded-lg transition-colors">Trimestre</button>
+<button class="px-3 py-1 font-medium text-slate-400 hover:text-slate-200 rounded-lg transition-colors">Ano</button>
+</div>
+<button class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700 flex items-center justify-center transition-colors" title="Exportar Relatório">
+<i class="fa-solid fa-arrow-down-to-bracket text-xs"></i>
+</button>
+</div>
+</div>
+<!-- 4 KPI Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-purpose="kpi-metric-cards">
+<!-- KPI 1: Negócios Ativos -->
+<div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-4 relative overflow-hidden group hover:border-slate-700 transition-all shadow-sm">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Negócios Ativos</span>
+<div class="flex items-baseline gap-2.5 mt-2">
+<span class="text-2xl font-black text-white">12</span>
+<span class="text-[11px] font-semibold text-emerald-400 flex items-center gap-0.5">
+<i class="fa-solid fa-arrow-up text-[9px]"></i> +18.4%
+                  </span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400">
+<i class="fa-solid fa-layer-group text-sm"></i>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+<span>Base em negociação</span>
+<span class="text-slate-300 font-medium">Meta: 15</span>
+</div>
+</div>
+<!-- KPI 2: Valor Total em Aberto -->
+<div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-4 relative overflow-hidden group hover:border-slate-700 transition-all shadow-sm">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Valor em Aberto</span>
+<div class="flex items-baseline gap-2.5 mt-2">
+<span class="text-2xl font-black text-white">1.240.000 <span class="text-sm font-semibold text-brand-400">Kz</span></span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+<i class="fa-solid fa-sack-dollar text-sm"></i>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+<span>Ponderado:</span>
+<span class="text-emerald-400 font-medium">890.000 Kz (71%)</span>
+</div>
+</div>
+<!-- KPI 3: Taxa de Conversão -->
+<div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-4 relative overflow-hidden group hover:border-slate-700 transition-all shadow-sm">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Taxa de Conversão</span>
+<div class="flex items-baseline gap-2.5 mt-2">
+<span class="text-2xl font-black text-white">68.5%</span>
+<span class="text-[11px] font-semibold text-emerald-400 flex items-center gap-0.5">
+<i class="fa-solid fa-arrow-up text-[9px]"></i> +5.2%
+                  </span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+<i class="fa-solid fa-chart-pie text-sm"></i>
+</div>
+</div>
+<!-- Progress bar -->
+<div class="mt-3 pt-2.5 border-t border-slate-800/60">
+<div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+<div class="bg-gradient-to-r from-brand-500 to-emerald-400 h-1.5 rounded-full" style="width: 68.5%"></div>
+</div>
+</div>
+</div>
+<!-- KPI 4: Ticket Médio -->
+<div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-4 relative overflow-hidden group hover:border-slate-700 transition-all shadow-sm">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ticket Médio</span>
+<div class="flex items-baseline gap-2.5 mt-2">
+<span class="text-2xl font-black text-white">103.333 <span class="text-sm font-semibold text-slate-400">Kz</span></span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
+<i class="fa-solid fa-receipt text-sm"></i>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+<span>Ciclo médio</span>
+<span class="text-slate-300 font-medium">14 dias até fecho</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: PageHeaderAndKPIs -->
+<!-- BEGIN: PipelineKanbanSection -->
+<section class="space-y-4" data-purpose="pipeline-kanban">
+<!-- Pipeline Control Bar (Filters, Responsibles, Search, View Toggle) -->
+<div class="bg-slate-900/90 border border-slate-800/80 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-3 shadow-md">
+<div class="flex items-center gap-3 flex-wrap">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-brand-400"></span>
+<h2 class="text-sm font-bold text-white tracking-wide">Pipeline de Vendas</h2>
+</div>
+<div class="h-4 w-px bg-slate-800 hidden sm:block"></div>
+<!-- Responsáveis filter -->
+<div class="relative">
+<button class="flex items-center gap-2 bg-[#111827] border border-slate-700/80 hover:border-slate-600 px-3 py-1.5 rounded-xl text-xs text-slate-300 transition-colors">
+<div class="w-4 h-4 rounded-full bg-amber-500 text-slate-950 font-black text-[9px] flex items-center justify-center">M</div>
+<span>Todos os responsáveis</span>
+<i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+</button>
+</div>
+<!-- Stage quick filter -->
+<div class="relative">
+<button class="flex items-center gap-2 bg-[#111827] border border-slate-700/80 hover:border-slate-600 px-3 py-1.5 rounded-xl text-xs text-slate-300 transition-colors">
+<i class="fa-regular fa-calendar text-slate-400 text-[11px]"></i>
+<span>Este mês</span>
+<i class="fa-solid fa-chevron-down text-[10px] text-slate-400 ml-1"></i>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-2.5">
+<!-- Search in pipeline -->
+<div class="relative">
+<i class="fa-solid fa-filter absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+<input class="bg-[#111827] border border-slate-700/80 rounded-xl pl-8 pr-3 py-1 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-brand-500 w-44 lg:w-56" placeholder="Filtrar nesta etapa..." type="text"/>
+</div>
+<!-- View Switcher (Kanban vs List) -->
+<div class="flex items-center bg-[#111827] border border-slate-700/80 rounded-xl p-0.5">
+<button class="px-2.5 py-1 rounded-lg bg-brand-500/20 text-brand-300 font-semibold text-xs flex items-center gap-1.5 border border-brand-500/30">
+<i class="fa-solid fa-table-columns text-[11px]"></i>
+<span class="hidden sm:inline">Kanban</span>
+</button>
+<button class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-slate-200 text-xs flex items-center gap-1.5 transition-colors">
+<i class="fa-solid fa-list-ul text-[11px]"></i>
+<span class="hidden sm:inline">Lista</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Horizontal Scrollable Kanban Columns Container -->
+<div class="kanban-scroll overflow-x-auto pb-4 pt-1">
+<div class="flex gap-4 items-start min-w-max">
+<!-- ================= COLUMN 1: PROSPECÇÃO ================= -->
+<div class="column-min-w bg-[#0f1726]/90 border border-slate-800/90 rounded-2xl flex flex-col p-3 shadow-md" data-purpose="kanban-column-prospeccao">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-3 border-b border-slate-800/70 mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50"></span>
+<span class="text-xs font-bold text-slate-100 uppercase tracking-wider">Prospecção</span>
+<span class="text-[10px] font-mono text-slate-400 font-bold bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">01</span>
+</div>
+<span class="text-[11px] font-bold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full border border-blue-500/20">2</span>
+</div>
+<!-- Cards Area -->
+<div class="space-y-3">
+<!-- Deal Card: SATURNO AURORA -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Empresa</span>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">SATURNO AURORA</h3>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<!-- Details -->
+<div class="mt-2.5 space-y-1.5 text-[11px] text-slate-400">
+<div class="flex items-center gap-2 truncate">
+<i class="fa-solid fa-at text-[10px] text-slate-500 w-3"></i>
+<span class="truncate hover:text-slate-300">saturno03@gmail.com</span>
+</div>
+<div class="flex items-center gap-2 truncate">
+<i class="fa-solid fa-location-dot text-[10px] text-rose-400/80 w-3"></i>
+<span class="truncate">Washington DC, Sequele, Bloco 14, Rua 3</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="fa-solid fa-phone text-[10px] text-slate-500 w-3"></i>
+<span>932523376</span>
+</div>
+</div>
+<!-- Card Footer / Identifiers -->
+<div class="mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-[10px] font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-slate-400">
+                      NIF: 0481247584LA013
+                    </span>
+<span class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[10px] font-bold flex items-center justify-center">
+                      SA
+                    </span>
+</div>
+</article>
+<!-- Deal Card: C_ALL -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Empresa</span>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">C_ALL</h3>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<!-- Details -->
+<div class="mt-2.5 space-y-1.5 text-[11px] text-slate-400">
+<div class="flex items-center gap-2 truncate">
+<i class="fa-solid fa-at text-[10px] text-slate-500 w-3"></i>
+<span class="truncate hover:text-slate-300">augustosalvador46@gmail.com</span>
+</div>
+<div class="flex items-center gap-2 truncate">
+<i class="fa-solid fa-location-dot text-[10px] text-rose-400/80 w-3"></i>
+<span class="truncate">Luanda , Cazenga</span>
+</div>
+<div class="flex items-center gap-2">
+<i class="fa-solid fa-phone text-[10px] text-slate-500 w-3"></i>
+<span>932523376</span>
+</div>
+</div>
+<!-- Card Footer / Identifiers -->
+<div class="mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-[10px] font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-slate-400">
+                      NIF: 020121780LA053
+                    </span>
+<span class="w-6 h-6 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-[10px] font-bold flex items-center justify-center">
+                      CA
+                    </span>
+</div>
+</article>
+<!-- Add Button -->
+<button class="w-full py-2 border border-dashed border-slate-700/80 hover:border-slate-500 rounded-xl text-xs text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors bg-slate-900/30 hover:bg-slate-900/60">
+<i class="fa-solid fa-plus text-[10px]"></i>
+<span>Adicionar negócio</span>
+</button>
+</div>
+</div>
+<!-- ================= COLUMN 2: APRESENTAÇÃO DE PROPOSTA ================= -->
+<div class="column-min-w bg-[#0f1726]/90 border border-slate-800/90 rounded-2xl flex flex-col p-3 shadow-md" data-purpose="kanban-column-proposta">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-3 border-b border-slate-800/70 mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400/50"></span>
+<span class="text-xs font-bold text-slate-100 uppercase tracking-wider truncate">Apres. de Proposta</span>
+<span class="text-[10px] font-mono text-slate-400 font-bold bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">02</span>
+</div>
+<span class="text-[11px] font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">2</span>
+</div>
+<!-- Cards Area -->
+<div class="space-y-3">
+<!-- Deal Card: Restaurante Kaluanda -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Restaurante Kaluanda</h3>
+<p class="text-[11px] text-slate-400 mt-0.5">Plano mensal de gestão</p>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<div class="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-white">180.000 <span class="text-[10px] text-brand-400 font-bold">Kz</span></span>
+<span class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[10px] font-bold flex items-center justify-center">
+                      MA
+                    </span>
+</div>
+</article>
+<!-- Deal Card: Studio 24 -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Studio 24</h3>
+<p class="text-[11px] text-slate-400 mt-0.5">Pacote de produtos</p>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<div class="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-white">75.000 <span class="text-[10px] text-brand-400 font-bold">Kz</span></span>
+<span class="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[10px] font-bold flex items-center justify-center">
+                      AN
+                    </span>
+</div>
+</article>
+<!-- Add Button -->
+<button class="w-full py-2 border border-dashed border-slate-700/80 hover:border-slate-500 rounded-xl text-xs text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors bg-slate-900/30 hover:bg-slate-900/60">
+<i class="fa-solid fa-plus text-[10px]"></i>
+<span>Adicionar Negócio</span>
+</button>
+</div>
+</div>
+<!-- ================= COLUMN 3: QUALIFICAÇÃO ================= -->
+<div class="column-min-w bg-[#0f1726]/90 border border-slate-800/90 rounded-2xl flex flex-col p-3 shadow-md" data-purpose="kanban-column-qualificacao">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-3 border-b border-slate-800/70 mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-sm shadow-amber-400/50"></span>
+<span class="text-xs font-bold text-slate-100 uppercase tracking-wider">Qualificação</span>
+<span class="text-[10px] font-mono text-slate-400 font-bold bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">03</span>
+</div>
+<span class="text-[11px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">3</span>
+</div>
+<!-- Cards Area -->
+<div class="space-y-3">
+<!-- Deal Card: Oficina Nova Vida (1) -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Oficina Nova Vida</h3>
+<p class="text-[11px] text-slate-400 mt-0.5">Serviço de manutenção</p>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<div class="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-white">230.000 <span class="text-[10px] text-brand-400 font-bold">Kz</span></span>
+<span class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[10px] font-bold flex items-center justify-center">
+                      MA
+                    </span>
+</div>
+</article>
+<!-- Deal Card: Clínica Sagrada -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Clínica Sagrada</h3>
+<p class="text-[11px] text-slate-400 mt-0.5">Renovação anual</p>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<div class="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-white">320.000 <span class="text-[10px] text-brand-400 font-bold">Kz</span></span>
+<span class="w-6 h-6 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-[10px] font-bold flex items-center justify-center">
+                      JO
+                    </span>
+</div>
+</article>
+<!-- Deal Card: Oficina Nova Vida (2) -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Oficina Nova Vida</h3>
+<p class="text-[11px] text-slate-400 mt-0.5">Contrato adicional</p>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<div class="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-white">230.000 <span class="text-[10px] text-brand-400 font-bold">Kz</span></span>
+<span class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[10px] font-bold flex items-center justify-center">
+                      MA
+                    </span>
+</div>
+</article>
+<!-- Add Button -->
+<button class="w-full py-2 border border-dashed border-slate-700/80 hover:border-slate-500 rounded-xl text-xs text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors bg-slate-900/30 hover:bg-slate-900/60">
+<i class="fa-solid fa-plus text-[10px]"></i>
+<span>Adicionar negócio</span>
+</button>
+</div>
+</div>
+<!-- ================= COLUMN 4: NEGOCIAÇÃO ================= -->
+<div class="column-min-w bg-[#0f1726]/90 border border-slate-800/90 rounded-2xl flex flex-col p-3 shadow-md" data-purpose="kanban-column-negociacao">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-3 border-b border-slate-800/70 mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm shadow-rose-500/50"></span>
+<span class="text-xs font-bold text-slate-100 uppercase tracking-wider">Negociação</span>
+<span class="text-[10px] font-mono text-slate-400 font-bold bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">04</span>
+</div>
+<span class="text-[11px] font-bold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">1</span>
+</div>
+<!-- Cards Area -->
+<div class="space-y-3">
+<!-- Deal Card: Grupo Horizonte -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Grupo Horizonte</h3>
+<p class="text-[11px] text-slate-400 mt-0.5">Solução empresarial</p>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<!-- Probability Bar -->
+<div class="mt-3">
+<div class="flex justify-between text-[10px] text-slate-400 mb-1">
+<span>Probabilidade</span>
+<span class="text-amber-400 font-bold">80%</span>
+</div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-400 h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-white">290.000 <span class="text-[10px] text-brand-400 font-bold">Kz</span></span>
+<span class="w-6 h-6 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300 text-[10px] font-bold flex items-center justify-center">
+                      AN
+                    </span>
+</div>
+</article>
+<!-- Add Button -->
+<button class="w-full py-2 border border-dashed border-slate-700/80 hover:border-slate-500 rounded-xl text-xs text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors bg-slate-900/30 hover:bg-slate-900/60">
+<i class="fa-solid fa-plus text-[10px]"></i>
+<span>Adicionar negócio</span>
+</button>
+</div>
+</div>
+<!-- ================= COLUMN 5: FECHAMENTO ================= -->
+<div class="column-min-w bg-[#0f1726]/90 border border-slate-800/90 rounded-2xl flex flex-col p-3 shadow-md" data-purpose="kanban-column-fechamento">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-3 border-b border-slate-800/70 mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50"></span>
+<span class="text-xs font-bold text-slate-100 uppercase tracking-wider">Fechamento</span>
+<span class="text-[10px] font-mono text-slate-400 font-bold bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">05</span>
+</div>
+<span class="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">1</span>
+</div>
+<!-- Cards Area -->
+<div class="space-y-3">
+<!-- Deal Card: Aquarela Boutique -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Aquarela Boutique</h3>
+<p class="text-[11px] text-slate-400 mt-0.5">Contrato de serviços</p>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<div class="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-white">145.000 <span class="text-[10px] text-brand-400 font-bold">Kz</span></span>
+<span class="text-[10px] font-semibold text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
+                      Hoje
+                    </span>
+</div>
+</article>
+<!-- Add Button -->
+<button class="w-full py-2 border border-dashed border-slate-700/80 hover:border-slate-500 rounded-xl text-xs text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors bg-slate-900/30 hover:bg-slate-900/60">
+<i class="fa-solid fa-plus text-[10px]"></i>
+<span>Adicionar negócio</span>
+</button>
+</div>
+</div>
+<!-- ================= COLUMN 6: COBRANÇA ================= -->
+<div class="column-min-w bg-[#0f1726]/90 border border-slate-800/90 rounded-2xl flex flex-col p-3 shadow-md" data-purpose="kanban-column-cobranca">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-3 border-b border-slate-800/70 mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-violet-400 shadow-sm shadow-violet-400/50"></span>
+<span class="text-xs font-bold text-slate-100 uppercase tracking-wider">Cobrança</span>
+<span class="text-[10px] font-mono text-slate-400 font-bold bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">06</span>
+</div>
+<span class="text-[11px] font-bold text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-full border border-violet-500/20">1</span>
+</div>
+<!-- Cards Area -->
+<div class="space-y-3">
+<!-- Deal Card: Aquarela Boutique -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Aquarela Boutique</h3>
+<p class="text-[11px] text-slate-400 mt-0.5">Contrato de serviços</p>
+</div>
+<button class="text-slate-500 hover:text-slate-300 p-1">
+<i class="fa-solid fa-ellipsis text-xs"></i>
+</button>
+</div>
+<div class="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-white">145.000 <span class="text-[10px] text-brand-400 font-bold">Kz</span></span>
+<span class="text-[10px] font-semibold text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
+                      Hoje
+                    </span>
+</div>
+</article>
+<!-- Add Button -->
+<button class="w-full py-2 border border-dashed border-slate-700/80 hover:border-slate-500 rounded-xl text-xs text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors bg-slate-900/30 hover:bg-slate-900/60">
+<i class="fa-solid fa-plus text-[10px]"></i>
+<span>Adicionar negócio</span>
+</button>
+</div>
+</div>
+<!-- ================= COLUMN 7: PAGAMENTO ================= -->
+<div class="column-min-w bg-[#0f1726]/90 border border-slate-800/90 rounded-2xl flex flex-col p-3 shadow-md" data-purpose="kanban-column-pagamento">
+<!-- Column Header -->
+<div class="flex items-center justify-between pb-3 border-b border-slate-800/70 mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
+<span class="text-xs font-bold text-slate-100 uppercase tracking-wider">Pagamento</span>
+<span class="text-[10px] font-mono text-slate-400 font-bold bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">07</span>
+</div>
+<span class="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">1</span>
+</div>
+<!-- Cards Area -->
+<div class="space-y-3">
+<!-- Deal Card: Aquarela Boutique -->
+<article class="bg-[#121a2c] hover:bg-[#162137] border border-slate-800/90 hover:border-slate-700/80 rounded-xl p-3.5 shadow-sm transition-all group cursor-grab active:cursor-grabbing">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-xs font-bold text-white group-hover:text-brand-300 transition-colors">Aquarela Boutique</h3>
+</div>
+<p class="text-[11px] text-slate-400 mt-0.5">Contrato de serviços</p>
+</div>
+<span class="text-[9px] font-bold text-brand-400 bg-brand-500/15 px-1.5 py-0.5 rounded border border-brand-500/30">
+                      Concluído
+                    </span>
+</div>
+<div class="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center justify-between">
+<span class="text-xs font-black text-emerald-400">145.000 <span class="text-[10px] font-bold">Kz</span></span>
+<span class="text-[10px] font-semibold text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
+                      Hoje
+                    </span>
+</div>
+</article>
+<!-- Add Button -->
+<button class="w-full py-2 border border-dashed border-slate-700/80 hover:border-slate-500 rounded-xl text-xs text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5 transition-colors bg-slate-900/30 hover:bg-slate-900/60">
+<i class="fa-solid fa-plus text-[10px]"></i>
+<span>Adicionar negócio</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: PipelineKanbanSection -->
+<!-- BEGIN: EnterpriseSecurityCards -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2" data-purpose="compliance-and-security-footer">
+<!-- Security Card 1 -->
+<div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+<i class="fa-solid fa-shield-halved text-lg"></i>
+</div>
+<div class="min-w-0">
+<h4 class="text-xs font-bold text-white tracking-wide">Backups &amp; Segurança RGPD / APD</h4>
+<p class="text-[11px] text-slate-400 mt-0.5 line-clamp-1">Todos os registos e negociações com encriptação de ponta a ponta e redundância diária no datacenter.</p>
+</div>
+</div>
+<!-- Security Card 2 -->
+<div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center flex-shrink-0">
+<i class="fa-solid fa-bolt text-lg"></i>
+</div>
+<div class="min-w-0">
+<h4 class="text-xs font-bold text-white tracking-wide">Faturação Direta &amp; Exportação SAF-T (AO)</h4>
+<p class="text-[11px] text-slate-400 mt-0.5 line-clamp-1">Software certificado pela AGT. Emita faturas com QR Code e comunique os lotes fiscais em tempo real.</p>
+</div>
+</div>
+</section>
+<!-- END: EnterpriseSecurityCards -->
+</main>
+</div>
+<!-- END: MainContentWrapper -->
+<!-- BEGIN: FloatingSupportWidget -->
+<aside class="fixed bottom-5 right-5 flex items-end gap-3 z-50 pointer-events-auto" data-purpose="floating-support">
+<!-- MRS Colaboradores Card -->
+<div class="bg-[#111928]/95 backdrop-blur-md border border-slate-700/80 rounded-2xl p-3.5 shadow-2xl max-w-xs text-xs text-slate-200 relative animate-fade-in">
+<button class="absolute top-2 right-2 text-slate-400 hover:text-white p-1" title="Fechar">
+<i class="fa-solid fa-xmark text-xs"></i>
+</button>
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+<span class="font-extrabold tracking-wide text-[11px] text-emerald-400 uppercase">MRS COLABORADORES</span>
+</div>
+<p class="text-slate-300 text-[11px] leading-relaxed pr-4">
+        Olá Mauro! O que deseja saber sobre as oportunidades e o funil de hoje?
+      </p>
+</div>
+<!-- WhatsApp Quick Float Icon Button -->
+<button class="w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-lg shadow-emerald-500/30 hover:scale-105 active:scale-95 transition-all" title="Falar via WhatsApp">
+<i class="fa-brands fa-whatsapp text-2xl font-bold"></i>
+</button>
+</aside>
+<!-- END: FloatingSupportWidget -->
+<!-- Simple Interactivity Handler -->
+<script data-purpose="ui-interactions">
+    // Quick search shortcut trigger Ctrl+K
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        const searchInput = document.querySelector('input[placeholder*="Pesquisar"]');
+        if (searchInput) searchInput.focus();
+      }
+    });
+  </script>
+</body></html>

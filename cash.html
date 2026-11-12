@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+<html lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mix-CRM Caixa da Empresa</title>
+<!-- Tailwind CSS v3 with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#070b12',
+              sidebar: '#0b111e',
+              card: '#111927',
+              cardHover: '#162235',
+              border: '#1f2e45',
+              subtle: '#2a3b56',
+              emerald: '#10b981',
+              emeraldHover: '#059669',
+              amber: '#f59e0b',
+              blue: '#2563eb',
+              cyan: '#06b6d4',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+<!-- Custom styling definitions for crisp typography, scrollbars and dark aesthetics -->
+<style data-purpose="base-styling">
+    body {
+      background-color: #080d16;
+      color: #e2e8f0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+    /* Custom subtle dark scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b111e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e2c40;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2a3e5c;
+    }
+  </style>
+<style data-purpose="component-effects">
+    .glass-card {
+      background: linear-gradient(180deg, rgba(19, 28, 46, 0.85) 0%, rgba(13, 20, 34, 0.95) 100%);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .active-nav-glow {
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex bg-[#080d16] text-slate-200 antialiased selection:bg-emerald-500/20 selection:text-emerald-400">
+<!-- BEGIN: LeftSidebar -->
+<aside class="w-64 flex-shrink-0 bg-[#0b111e] border-r border-[#1a2638] flex flex-col justify-between h-screen sticky top-0 z-30 select-none">
+<!-- Top Branding & Navigation Area -->
+
+<nav class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+<!-- Grupo 1: Módulo de Operações -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo de Operações</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-brand-500/15 text-brand-400 font-semibold border border-brand-500/20 shadow-sm transition-all group" href="index.html">
+<svg class="w-4 h-4 text-brand-400 transition group-hover:scale-110" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Início</span>
+<span class="ml-auto w-1.5 h-1.5 rounded-full bg-brand-400 shadow-glow-emerald"></span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="organization.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Organizações</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="products.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Produtos</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 font-mono">8</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="business.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Negócios</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Fornecedores</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="cash.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Caixa</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="customers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0"></svg>
+<span class="text-sm">Clientes</span>
+<span class="ml-auto text-xs px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-mono">10</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="activity.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Atividades</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 2: Módulo Financeiro -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Módulo Financeiro</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="invoice.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Emitir Fatura</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="finances.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Finanças</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="salary.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Folha de Salário</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="suppliers.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm">Pedidos</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="goals.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="4" stroke-width="2"></circle>
+<circle cx="12" cy="12" r="1" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Metas</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Grupo 3: Definições -->
+<div>
+<div class="px-3 mb-2 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+<span>Definições</span>
+<span class="h-1 w-6 bg-slate-800 rounded"></span>
+</div>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 transition-all group" href="config.html">
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-200" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<circle cx="12" cy="12" r="3" stroke-width="2"></circle>
+</svg>
+<span class="text-sm">Configurações</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+
+<!-- Bottom User Profile & Status -->
+<div class="p-3 border-t border-[#172233] bg-[#090e18]">
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-[#141f30] transition-colors">
+<div class="flex items-center gap-2.5 overflow-hidden">
+<div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/30 text-amber-400 font-bold text-xs flex items-center justify-center flex-shrink-0">
+            MS
+          </div>
+<div class="truncate">
+<p class="text-xs font-semibold text-white truncate">Mauro Silva</p>
+<p class="text-[10px] text-slate-400 truncate">Administrador</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-rose-400 p-1.5 rounded transition-colors" title="Encerrar Sessão">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Server status indicator -->
+<div class="mt-2 pt-2 border-t border-[#141e2e] flex items-center justify-between px-1 text-[10px] text-slate-400 font-mono">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Servidor: Online
+        </span>
+<span class="text-slate-500">v2.4.1</span>
+</div>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentWrapper -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- BEGIN: TopBar -->
+<header class="h-16 bg-[#0b111e]/90 backdrop-blur-md border-b border-[#1a2638] px-8 flex items-center justify-between sticky top-0 z-20">
+<!-- Left side: Org selector & Search Bar -->
+<div class="flex items-center gap-4 flex-1 max-w-2xl">
+<!-- Organization Selector Dropdown -->
+<div class="relative">
+<button class="flex items-center gap-2 bg-[#121c2c] hover:bg-[#18263c] text-xs font-medium text-slate-200 py-2 px-3 rounded-lg border border-[#22334c] transition-all">
+<span class="w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-emerald-500/20"></span>
+<span>Organização Principal</span>
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Global Search Input -->
+<div class="relative flex-1">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<input class="w-full pl-9 pr-12 py-1.5 text-xs bg-[#111927] border border-[#1f2e45] rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 transition-all font-sans" placeholder="Pesquisar transações, clientes, faturas, movimentos... (Ctrl + K)" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none">
+<kbd class="text-[10px] bg-[#1a2638] text-slate-400 px-1.5 py-0.5 rounded border border-[#2b3c56] font-mono">⌘K</kbd>
+</div>
+</div>
+</div>
+<!-- Right side: Date filter, Actions, and Profile icons -->
+<div class="flex items-center gap-3">
+<!-- Date Selector Dropdown -->
+<div class="relative">
+<select class="bg-[#121c2c] border border-[#22334c] text-xs font-medium text-slate-200 rounded-lg py-2 pl-3 pr-8 focus:outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer">
+<option>Este mês (Junho 2026)</option>
+<option>Mês Anterior</option>
+<option>Últimos 30 dias</option>
+<option>Trimestre Atual (Q2)</option>
+<option>Ano Completo (2026)</option>
+</select>
+</div>
+<!-- New Transaction Primary Button -->
+<button class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm shadow-emerald-900/30 hover:shadow-emerald-600/20 transition-all">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path></svg>
+<span>Novo Movimento</span>
+</button>
+<div class="h-5 w-px bg-[#1d2a3e] mx-1"></div>
+<!-- Notifications -->
+<button class="relative p-2 text-slate-400 hover:text-slate-200 hover:bg-[#141f30] rounded-lg transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-500"></span>
+</button>
+<!-- Dark/Light Theme Indicator Toggle -->
+<button class="p-2 text-slate-400 hover:text-slate-200 hover:bg-[#141f30] rounded-lg transition-colors" title="Modo Noturno Ativo">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: MainBody -->
+<main class="flex-1 p-8 space-y-7 max-w-[1720px] mx-auto w-full">
+<!-- BEGIN: SectionHeader -->
+<section class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="text-[11px] font-bold tracking-wider uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+              Módulo Financeiro
+            </span>
+<span class="text-slate-600 text-xs">•</span>
+<span class="text-xs text-slate-400 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Fluxo de Caixa &amp; Tesouraria
+            </span>
+</div>
+<h1 class="text-2xl lg:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
+            Caixa da empresa
+            <span class="text-xs font-normal text-slate-400 bg-[#141e30] border border-[#21314a] px-2.5 py-1 rounded-md">
+              Período Atual
+            </span>
+</h1>
+<p class="text-xs lg:text-sm text-slate-400 mt-1">
+            O retrato do dinheiro que entrou, saiu e está disponível na conta corporativa em tempo real.
+          </p>
+</div>
+<!-- Quick Summary Actions -->
+<div class="flex items-center gap-2.5">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 bg-[#121c2d] hover:bg-[#18263d] border border-[#1f2e46] rounded-lg transition-colors">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Exportar Extrato</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 bg-[#121c2d] hover:bg-[#18263d] border border-[#1f2e46] rounded-lg transition-colors">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Reconciliar Caixa</span>
+</button>
+</div>
+</section>
+<!-- END: SectionHeader -->
+<!-- BEGIN: KPICardsGrid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-purpose="kpi-cards">
+<!-- KPI 1: Saldo Disponível (Primary Highlight) -->
+<div class="glass-card rounded-xl p-5 border border-emerald-500/20 bg-gradient-to-b from-[#132034] to-[#0c1422] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-400">Saldo disponível</span>
+<div class="w-7 h-7 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-[11px] font-mono shadow-sm">
+              Kz
+            </div>
+</div>
+<div class="mt-3">
+<div class="text-2xl lg:text-3xl font-bold font-mono tracking-tight text-white flex items-baseline gap-1.5">
+<span>100.000</span>
+<span class="text-base text-emerald-400 font-normal">Kz</span>
+</div>
+<div class="mt-2 flex items-center justify-between text-[11px]">
+<span class="text-slate-400">Resultado líquido do período</span>
+<span class="text-emerald-400 font-semibold bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 flex items-center gap-0.5">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+                +18.5%
+              </span>
+</div>
+</div>
+</div>
+<!-- KPI 2: Entradas -->
+<div class="glass-card rounded-xl p-5 border border-[#1f2e46] hover:border-slate-600/50 transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-400">Entradas</span>
+<div class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</div>
+</div>
+<div class="mt-3">
+<div class="text-2xl lg:text-3xl font-bold font-mono tracking-tight text-emerald-400 flex items-baseline gap-1.5">
+<span>100.000</span>
+<span class="text-base font-normal">Kz</span>
+</div>
+<div class="mt-2 flex items-center justify-between text-[11px]">
+<span class="text-slate-400 truncate">Recebimentos confirmados</span>
+<span class="text-slate-400 font-mono text-[10px]">1 fatura</span>
+</div>
+</div>
+</div>
+<!-- KPI 3: Saídas -->
+<div class="glass-card rounded-xl p-5 border border-[#1f2e46] hover:border-slate-600/50 transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-400">Saídas</span>
+<div class="w-7 h-7 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</div>
+</div>
+<div class="mt-3">
+<div class="text-2xl lg:text-3xl font-bold font-mono tracking-tight text-white flex items-baseline gap-1.5">
+<span>0</span>
+<span class="text-base text-slate-400 font-normal">Kz</span>
+</div>
+<div class="mt-2 flex items-center justify-between text-[11px]">
+<span class="text-slate-400 truncate">Despesas registadas</span>
+<span class="text-slate-500 font-mono text-[10px]">0 pendentes</span>
+</div>
+</div>
+</div>
+<!-- KPI 4: Movimentos -->
+<div class="glass-card rounded-xl p-5 border border-[#1f2e46] hover:border-slate-600/50 transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-slate-400">Movimentos</span>
+<div class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<div class="mt-3">
+<div class="text-2xl lg:text-3xl font-bold font-mono tracking-tight text-white flex items-baseline gap-1.5">
+<span>1</span>
+<span class="text-xs text-slate-400 font-normal font-sans">Lançamento</span>
+</div>
+<div class="mt-2 flex items-center justify-between text-[11px]">
+<span class="text-slate-400">Lançamentos no período</span>
+<span class="text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded text-[10px] font-medium border border-emerald-500/20">
+                100% Reconciliado
+              </span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: KPICardsGrid -->
+<!-- BEGIN: ContentColumnsGrid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Column Left: Movimentos recentes Table (Span 7) -->
+<section class="lg:col-span-7 glass-card rounded-xl border border-[#1e2e47] flex flex-col justify-between overflow-hidden shadow-lg" data-purpose="recent-movements-table">
+<div>
+<!-- Card Header -->
+<div class="p-5 border-b border-[#1b293e] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0d1522]/60">
+<div class="flex items-center gap-3">
+<h2 class="text-base font-semibold text-white tracking-tight">Movimentos recentes</h2>
+<span class="text-[11px] font-mono bg-[#162235] text-slate-400 border border-[#243550] px-2 py-0.5 rounded-full">
+                  1 registo
+                </span>
+</div>
+<div class="flex items-center gap-2">
+<!-- Filter categories -->
+<select class="bg-[#121c2d] border border-[#202f47] text-xs text-slate-300 rounded-lg py-1 px-2.5 focus:ring-1 focus:ring-emerald-500">
+<option>Todas as categorias</option>
+<option>Entradas (Negócios)</option>
+<option>Saídas (Despesas)</option>
+<option>Operações de Capital</option>
+</select>
+<a class="text-xs font-medium text-emerald-400 hover:text-emerald-300 flex items-center gap-1 transition-colors px-2 py-1 rounded hover:bg-emerald-500/10" href="#">
+<span>Ver negócios</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[11px] uppercase tracking-wider text-slate-400/90 font-semibold border-b border-[#19273c] bg-[#0e1625]/40">
+<th class="py-3 px-4" scope="col">Movimento</th>
+<th class="py-3 px-4" scope="col">Categoria</th>
+<th class="py-3 px-4" scope="col">Data &amp; Hora</th>
+<th class="py-3 px-4 text-right" scope="col">Valor</th>
+<th class="py-3 px-4 text-center" scope="col">Ação</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#172336] text-xs">
+<!-- Row 1: Authentic item from Screenshot (Compra de Ações - C_ALL) -->
+<tr class="hover:bg-[#142033]/60 transition-colors group">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 flex-shrink-0">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<p class="font-semibold text-slate-100 group-hover:text-emerald-400 transition-colors">Compra de Ações</p>
+<p class="text-[11px] text-slate-400 font-mono">C_ALL • Ref #MOV-2026-041</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-950/60 text-emerald-300 border border-emerald-800/40">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        Entrada
+                      </span>
+<span class="block text-[10px] text-slate-400 mt-0.5 pl-3">Negócios</span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-slate-300 font-mono text-[11px]">
+<div>2026-11-12</div>
+<div class="text-[10px] text-slate-400">23:20:00 (GMT+1)</div>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-mono">
+<div class="text-sm font-bold text-emerald-400">+ 100.000 <span class="text-xs font-normal">Kz</span></div>
+<span class="text-[10px] text-slate-400 font-sans">Liquidado</span>
+</td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<div class="inline-flex items-center gap-1">
+<!-- Receipt View -->
+<button class="p-1.5 rounded-md hover:bg-[#1b283c] text-slate-400 hover:text-slate-200 transition-colors" title="Ver Comprovativo">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<!-- Delete / Action Button (matching primary blue from screenshot) -->
+<button class="p-1.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-sm" title="Eliminar / Opções">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Projected Contextual Row (Subscrição de Software) -->
+<tr class="hover:bg-[#142033]/60 transition-colors group opacity-60">
+<td class="py-3.5 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 flex-shrink-0">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<p class="font-medium text-slate-300">Renovação Anual CRM Cloud</p>
+<p class="text-[11px] text-slate-400 font-mono">Infraestrutura TI • #PREV-2026-088</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-800 text-slate-400 border border-slate-700">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                        Previsão Saída
+                      </span>
+<span class="block text-[10px] text-slate-400 mt-0.5 pl-3">Despesa Fixa</span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-slate-400 font-mono text-[11px]">
+<div>2026-11-28</div>
+<div class="text-[10px] text-slate-400">Agendada</div>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap font-mono">
+<div class="text-sm font-semibold text-slate-300">- 45.000 <span class="text-xs font-normal">Kz</span></div>
+<span class="text-[10px] text-amber-400 font-sans">Aguardando Aprovação</span>
+</td>
+<td class="py-3.5 px-4 text-center whitespace-nowrap">
+<button class="p-1.5 rounded-md hover:bg-[#1b283c] text-slate-400 hover:text-slate-300 transition-colors" title="Editar Previsão">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Bottom Footer Quick Add Trigger -->
+<div class="p-3.5 bg-[#0a101b] border-t border-[#182538] flex items-center justify-between">
+<button class="text-xs font-medium text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-emerald-500/30 hover:border-emerald-500/60 hover:bg-emerald-500/5 transition-all">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+<span>Adicionar lançamento rápido</span>
+</button>
+<div class="text-[11px] text-slate-400 flex items-center gap-2">
+<span>Total auditado: <strong class="text-white font-mono">100.000 Kz</strong></span>
+</div>
+</div>
+</section>
+<!-- Column Right: Fluxo de Caixa Chart & Insights (Span 5) -->
+<section class="lg:col-span-5 glass-card rounded-xl border border-[#1e2e47] p-5 flex flex-col justify-between" data-purpose="cashflow-analytics-chart">
+<div>
+<!-- Chart Header & Switchers -->
+<div class="flex items-center justify-between pb-3 border-b border-[#1b293e]">
+<div>
+<h2 class="text-base font-semibold text-white tracking-tight">Fluxo de caixa</h2>
+<p class="text-[11px] text-slate-400">Comparativo mensal de tesouraria</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-slate-400 font-mono bg-[#141e30] border border-[#22334e] px-2 py-0.5 rounded">
+                  6 meses
+                </span>
+</div>
+</div>
+<!-- Chart Legends -->
+<div class="flex items-center justify-end gap-4 mt-3 text-xs">
+<div class="flex items-center gap-1.5 text-slate-300">
+<span class="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-sm shadow-blue-500/50"></span>
+<span>Entradas</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-300">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50"></span>
+<span>Saídas</span>
+</div>
+</div>
+<!-- Modern CSS/SVG Bar Chart (6 Months: Jan, Fev, Mar, Abr, Mai, Jun) -->
+<div class="mt-6 pt-4 pb-2">
+<div class="h-44 w-full flex items-end justify-between gap-3 px-2 border-b border-[#21314b] relative">
+<!-- Background Gridlines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="border-b border-dashed border-slate-400 w-full"></div>
+<div class="border-b border-dashed border-slate-400 w-full"></div>
+<div class="border-b border-dashed border-slate-400 w-full"></div>
+<div class="border-b border-dashed border-slate-400 w-full"></div>
+</div>
+<!-- Month 1: Jan -->
+<div class="flex-1 flex flex-col items-center gap-1 z-10 group">
+<div class="w-full flex items-end justify-center gap-1 h-36">
+<!-- Entradas -->
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-blue-700 to-blue-500 rounded-t-sm h-[45%] transition-all group-hover:brightness-125" title="Jan: 45.000 Kz"></div>
+<!-- Saídas -->
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-amber-700 to-amber-500 rounded-t-sm h-[18%] transition-all group-hover:brightness-125" title="Jan: 18.000 Kz"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-mono mt-1">Jan</span>
+</div>
+<!-- Month 2: Fev -->
+<div class="flex-1 flex flex-col items-center gap-1 z-10 group">
+<div class="w-full flex items-end justify-center gap-1 h-36">
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-blue-700 to-blue-500 rounded-t-sm h-[60%] transition-all group-hover:brightness-125" title="Fev: 60.000 Kz"></div>
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-amber-700 to-amber-500 rounded-t-sm h-[26%] transition-all group-hover:brightness-125" title="Fev: 26.000 Kz"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-mono mt-1">Fev</span>
+</div>
+<!-- Month 3: Mar -->
+<div class="flex-1 flex flex-col items-center gap-1 z-10 group">
+<div class="w-full flex items-end justify-center gap-1 h-36">
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-blue-700 to-blue-500 rounded-t-sm h-[38%] transition-all group-hover:brightness-125" title="Mar: 38.000 Kz"></div>
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-amber-700 to-amber-500 rounded-t-sm h-[22%] transition-all group-hover:brightness-125" title="Mar: 22.000 Kz"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-mono mt-1">Mar</span>
+</div>
+<!-- Month 4: Abr -->
+<div class="flex-1 flex flex-col items-center gap-1 z-10 group">
+<div class="w-full flex items-end justify-center gap-1 h-36">
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-blue-700 to-blue-500 rounded-t-sm h-[72%] transition-all group-hover:brightness-125" title="Abr: 72.000 Kz"></div>
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-amber-700 to-amber-500 rounded-t-sm h-[32%] transition-all group-hover:brightness-125" title="Abr: 32.000 Kz"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-mono mt-1">Abr</span>
+</div>
+<!-- Month 5: Mai -->
+<div class="flex-1 flex flex-col items-center gap-1 z-10 group">
+<div class="w-full flex items-end justify-center gap-1 h-36">
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-blue-700 to-blue-500 rounded-t-sm h-[52%] transition-all group-hover:brightness-125" title="Mai: 52.000 Kz"></div>
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-amber-700 to-amber-500 rounded-t-sm h-[28%] transition-all group-hover:brightness-125" title="Mai: 28.000 Kz"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-mono mt-1">Mai</span>
+</div>
+<!-- Month 6: Jun (Current Month - Matching screenshot spike) -->
+<div class="flex-1 flex flex-col items-center gap-1 z-10 group">
+<div class="w-full flex items-end justify-center gap-1 h-36 relative">
+<!-- Current badge pill -->
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 text-[9px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-1 rounded font-mono">
+                      Atual
+                    </div>
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-blue-600 via-blue-500 to-cyan-400 rounded-t-sm h-[94%] transition-all shadow-sm shadow-cyan-500/20 group-hover:brightness-125" title="Jun: 100.000 Kz"></div>
+<div class="w-3 sm:w-3.5 bg-gradient-to-t from-amber-700 to-amber-500 rounded-t-sm h-[30%] transition-all group-hover:brightness-125" title="Jun: 30.000 Kz"></div>
+</div>
+<span class="text-[10px] text-emerald-400 font-semibold font-mono mt-1">Jun</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Analysis & Projection Callout -->
+<div class="mt-5 space-y-3">
+<div class="p-3 bg-[#0d1624] border border-[#1b2b41] rounded-lg">
+<p class="text-xs text-slate-300 leading-relaxed">
+<span class="text-emerald-400 font-semibold">● Insight Financeiro:</span> O saldo cresce quando os negócios chegam a <strong class="text-white">Pagamento</strong> no pipeline comercial.
+              </p>
+</div>
+<!-- Projection Run-rate pill -->
+<div class="flex items-center justify-between text-[11px] p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+<span class="text-slate-300">Previsão fecho do mês:</span>
+<span class="text-emerald-400 font-bold font-mono text-xs">1.340.000 Kz</span>
+</div>
+</div>
+</section>
+</div>
+<!-- END: ContentColumnsGrid -->
+<!-- BEGIN: ComplianceFooterCards -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+<!-- RGPD / Security status card -->
+<div class="glass-card rounded-xl p-4 border border-[#1d2c43] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<p class="text-xs font-semibold text-white">Backups &amp; Segurança RGPD / APD</p>
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+</div>
+<p class="text-[11px] text-slate-400">Cópia de segurança encriptada diária executada com sucesso há 4 horas.</p>
+</div>
+</div>
+<button class="text-xs text-emerald-400 hover:text-emerald-300 font-medium px-2.5 py-1 rounded bg-[#162337] border border-[#253956] hover:bg-[#1d2e48] transition-colors whitespace-nowrap">
+            Ver Log
+          </button>
+</div>
+<!-- AGT Tax Certification status card -->
+<div class="glass-card rounded-xl p-4 border border-[#1d2c43] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<p class="text-xs font-semibold text-white">Faturação Direta &amp; Exportação SAF-T (AO)</p>
+<span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-blue-950 text-blue-400 border border-blue-800">AGT Válido</span>
+</div>
+<p class="text-[11px] text-slate-400">Certificação ativa para emissão fiscal em conformidade com as regras AGT.</p>
+</div>
+</div>
+<button class="text-xs text-slate-200 hover:text-white font-medium px-3 py-1 rounded bg-[#162337] border border-[#253956] hover:bg-[#1d2e48] transition-colors whitespace-nowrap">
+            Exportar XML
+          </button>
+</div>
+</section>
+<!-- END: ComplianceFooterCards -->
+</main>
+<!-- END: MainBody -->
+</div>
+<!-- END: MainContentWrapper -->
+<!-- BEGIN: FloatingWidgets -->
+<!-- AI Assistant Floating Pill from SCREEN_25 / SCREEN_3 -->
+<aside class="fixed bottom-6 right-20 z-40 hidden sm:flex items-center gap-3 p-3 glass-card border border-emerald-500/30 rounded-xl shadow-2xl max-w-sm animate-fade-in" data-purpose="ai-assistant-popup">
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<p class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider">MRS Colaboradores</p>
+<button class="text-slate-400 hover:text-slate-200 text-xs leading-none">✕</button>
+</div>
+<p class="text-xs text-slate-300 mt-0.5">Olá Mauro! O saldo do caixa atual é de <span class="font-mono text-emerald-400 font-semibold">100.000 Kz</span> com 1 negócio liquidado.</p>
+</div>
+</aside>
+<!-- WhatsApp Floating Action Button (Present in both SCREEN_25 & Screenshot 1) -->
+<a class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-[#10b981] hover:bg-[#059669] text-white flex items-center justify-center shadow-lg shadow-emerald-950/60 transition-transform hover:scale-105" data-purpose="whatsapp-support-btn" href="#" title="Suporte via WhatsApp">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
+</svg>
+</a>
+<!-- END: FloatingWidgets -->
+</body></html>
